@@ -2,7 +2,7 @@
 class Conexion {
     public static function Conectar(){
         define('servidor','localhost');
-        define('nombre_DB','PlayOnDB_2');
+        define('nombre_DB','JazminCafeDB');
         define('usuario','root');
         define('password','');
 

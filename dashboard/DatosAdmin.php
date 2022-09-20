@@ -8,7 +8,7 @@
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
-    $consulta = "SELECT IdUsuario, nombre, correo, usuario, password FROM Tusuarios WHERE Rol_Id='1'";
+    $consulta = "SELECT IdUsuario, nombre, apellido, telefono, correo, usuario, password FROM Usuarios WHERE Rol_Id='1'";
     $resultado = $conexion->prepare($consulta);
 
     $resultado->execute();
@@ -31,7 +31,9 @@
                         <thead class="text-center">
                             <tr>
                                 <th>Clave</th>
-                                <th>Nombre</th>
+                                <th>Nombre(s)</th>
+                                <th>Apellidos</th>
+                                <th>Telefono</th>
                                 <th>Correo</th>
                                 <th>Usuario</th>
                                 <th>Contraseña</th>
@@ -45,6 +47,8 @@
                                 <tr>
                                     <td><?php echo $dat['IdUsuario'] ?></td>
                                     <td><?php echo $dat['nombre'] ?></td>
+                                    <td><?php echo $dat['apellido'] ?></td>
+                                    <td><?php echo $dat['telefono'] ?></td>
                                     <td><?php echo $dat['correo'] ?></td>
                                     <td><?php echo $dat['usuario'] ?></td>
                                     <td><?php echo $dat['password'] ?></td>
@@ -74,6 +78,14 @@
                         <div class="form-group">
                             <label for="nombre" class="col-form-label">Nombre:</label>
                             <input type="text" class="form-control" id="nombre" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido" class="col-form-label">Apellidos:</label>
+                            <input type="text" class="form-control" id="apellido" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono" class="col-form-label">Telefono:</label>
+                            <input type="text" class="form-control" id="telefono" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="correo" class="col-form-label">Correo:</label>

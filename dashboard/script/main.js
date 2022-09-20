@@ -40,11 +40,15 @@ $(document).ready(function () {
         fila = $(this).closest("tr");
         IdUsuario = parseInt(fila.find('td:eq(0)').text());
         nombre = fila.find('td:eq(1)').text();
-        correo = fila.find('td:eq(2)').text();
-        usuario = fila.find('td:eq(3)').text();
-        password = fila.find('td:eq(4)').text();
+        apellido = fila.find('td:eq(2)').text();
+        telefono = fila.find('td:eq(3)').text();
+        correo = fila.find('td:eq(4)').text();
+        usuario = fila.find('td:eq(5)').text();
+        password = fila.find('td:eq(6)').text();
 
         $("#nombre").val(nombre);
+        $("#apellido").val(apellido);
+        $("#telefono").val(telefono);
         $("#correo").val(correo);
         $("#usuario").val(usuario);
         $("#password").val(password);
@@ -79,6 +83,8 @@ $(document).ready(function () {
     $("#formAdministrador").submit(function (e) {
         e.preventDefault();
         nombre = $.trim($("#nombre").val());
+        apellido = $.trim($("#apellido").val());
+        telefono = $.trim($("#telefono").val());
         correo = $.trim($("#correo").val());
         usuario = $.trim($("#usuario").val());
         password = $.trim($("#password").val());
@@ -86,16 +92,18 @@ $(document).ready(function () {
             url: "bd/crud.php",
             type: "POST",
             dataType: "json",
-            data: {nombre: nombre, correo: correo, usuario: usuario, password: password , IdUsuario: IdUsuario, opcion: opcion },
+            data: {nombre: nombre, apellido: apellido, telefono: telefono, correo: correo, usuario: usuario, password: password , IdUsuario: IdUsuario, opcion: opcion },
             success: function (data) {
                 console.log(data);
                 IdUsuario = data[0].IdUsuario;
                 nombre = data[0].nombre;
+                apellido = data[0].apellido;
+                telefono = data[0].telefono;
                 correo = data[0].correo;
                 usuario = data[0].usuario;
                 password = data[0].password;
-                if (opcion == 1) { tablaAdministrador.row.add([IdUsuario, nombre, correo, usuario, password]).draw(); }
-                else { tablaAdministrador.row(fila).data([IdUsuario, nombre, correo, usuario, password]).draw(); }
+                if (opcion == 1) { tablaAdministrador.row.add([IdUsuario, nombre, apellido, telefono, correo, usuario, password]).draw(); }
+                else { tablaAdministrador.row(fila).data([IdUsuario, nombre, apellido, telefono, correo, usuario, password]).draw(); }
             }
         });
         $("#modalCRUD").modal("hide");
