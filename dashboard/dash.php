@@ -6,7 +6,7 @@
 </div>
 <div class="centrado text-center">
     <h1>Bienvenido <span class="badge badge-primary">
-            <?php echo $_SESSION["s_usuario"]; ?>
+            <?php echo $_SESSION["s_correo"]; ?>
     </h1> </span>
     <img src="../assets/img/jazminCafeLogo.jpeg" alt="" height="">
 </div>

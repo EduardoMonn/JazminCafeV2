@@ -25,6 +25,7 @@ $consulta = "SELECT Usuarios.IdUsuario, Usuarios.Rol_Id, Roles.rol AS rol FROM U
             if ($resultado->rowCount() >= 1) {
                 $data = $resultado -> fetchAll(PDO::FETCH_ASSOC);
                 $_SESSION ["s_correo"] = $correo;
+                $_SESSION ["s_usuario"] = $data[0]["usuario"];
                 $_SESSION ["s_Rol_Id"] = $data[0]["Rol_Id"];
                 $_SESSION ["s_rol"] = $data[0]["rol"];
                 $_SESSION ["s_IdUsuario"] = $data[0]["IdUsuario"];

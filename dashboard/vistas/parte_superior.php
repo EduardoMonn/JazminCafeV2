@@ -1,16 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php
 session_start();
-if ($_SESSION["s_usuario"] == null) {
+if ($_SESSION["s_correo"] == null) {
   header("Location: ../dash.php");
 } else {
   if ($_SESSION["s_Rol_Id"] != 1) {
+    //! verificar
     header("Location: ../../proyecto_playon/Vistas/Pagina_usuario.php");
   }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -261,7 +261,7 @@ if ($_SESSION["s_usuario"] == null) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["s_usuario"]; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["s_correo"]; ?></span>
                 <!--                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
                 <img class="img-profile rounded-circle" src="img/user.png">
               </a>
