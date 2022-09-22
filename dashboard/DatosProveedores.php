@@ -2,16 +2,15 @@
 
 <!--INICIO del cont principal-->
 <div class="container">
-    <h1>Página de productos</h1>
+    <h1>Página de proveedores</h1>
     <?php
     include_once 'bd/conexion.php';
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
-    $consulta = "SELECT CvProducto, DsProducto, Contenido, Nombre, DsCategoria, Precio, Stock
-    FROM productos, proveedores, categorias
-    WHERE productos.CvProveedor=proveedores.CvProveedor and productos.CvCategoria=categorias.CvCategoria;";
+    $consulta = "SELECT CvProveedor, nombre, empresa, telefono FROM Proveedores";
     $resultado = $conexion->prepare($consulta);
+
     $resultado->execute();
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
     ?>
@@ -28,16 +27,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
-                    <table id="tablaJuego" class="table table-striped table-bordered table-condensed" style="width:100%">
+                    <table id="tablaProveedores" class="table table-striped table-bordered table-condensed" style="width:100%">
                         <thead class="text-center">
                             <tr>
                                 <th>Clave</th>
-                                <th>Producto</th>
-                                <th>Contenido</th>
-                                <th>Proveedor</th>
-                                <th>Categoria</th>
-                                <th>Precio</th>
-                                <th>Stock</th>
+                                <th>Nombre</th>
+                                <th>Empresa</th>
+                                <th>Telefono</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,13 +42,10 @@
                             foreach ($data as $dat) {
                             ?>
                                 <tr>
-                                    <td><?php echo $dat['CvProducto'] ?></td>
-                                    <td><?php echo $dat['DsProducto'] ?></td>
-                                    <td><?php echo $dat['Contenido'] ?></td>
-                                    <td><?php echo $dat['Nombre'] ?></td>
-                                    <td><?php echo $dat['DsCategoria'] ?></td>
-                                    <td><?php echo $dat['Precio']?></td>
-                                    <td><?php echo $dat['Stock']?></td>
+                                    <td><?php echo $dat['CvProveedor'] ?></td>
+                                    <td><?php echo $dat['nombre'] ?></td>
+                                    <td><?php echo $dat['empresa'] ?></td>
+                                    <td><?php echo $dat['telefono'] ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -65,7 +59,7 @@
     </div>
 
     <!--Modal para CRUD-->
-    <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalProveedores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,27 +67,19 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="formJuego">
+                <form id="formProveedores">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="nombre" class="col-form-label">Nombre:</label>
+                            <label for="nombre" class="col-form-label">nombre proveedor:</label>
                             <input type="text" class="form-control" id="nombre">
                         </div>
                         <div class="form-group">
-                            <label for="genero" class="col-form-label">Genero:</label>
-                            <input type="text" class="form-control" id="genero">
+                            <label for="empresa" class="col-form-label">Empresa:</label>
+                            <input type="text" class="form-control" id="empresa">
                         </div>
                         <div class="form-group">
-                            <label for="instrucciones" class="col-form-label">Instrucciones:</label>
-                            <input type="text" class="form-control" id="instrucciones">
-                        </div>
-                        <div class="form-group">
-                            <label for="repositorio" class="col-form-label">Repositorio:</label>
-                            <input type="text" class="form-control" id="repositorio">
-                        </div>
-                        <div class="form-group">
-                            <label for="url_img" class="col-form-label">url_img</label>
-                            <input type="text" class="form-control" id="url_img">
+                            <label for="telefono" class="col-form-label">Telefono:</label>
+                            <input type="text" class="form-control" id="telefono">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -105,5 +91,6 @@
         </div>
     </div>
 </div>
+
 <!--FIN del cont principal-->
-<?php require_once "vistas/parte_inferior_productos.php" ?>
+<?php require_once "vistas/parte_inferior_proveedores.php" ?>

@@ -78,12 +78,12 @@ if ($_SESSION["s_correo"] == null) {
 
           <span>Administrador</span>
         </a>
+        <hr class="sidebar-divider">
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Datos de administrador:</h6>
             <a class="collapse-item" href="DatosAdmin.php">Datos del administrador</a>
             <a class="collapse-item" href="DatosRoles.php">Roles</a>
-            <a class="collapse-item" href="DatosCategorias.php">Categorias</a>
           </div>
         </div>
       </li>
@@ -100,6 +100,8 @@ if ($_SESSION["s_correo"] == null) {
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Datos de productos:</h6>
             <a class="collapse-item" href="DatosProductos.php">Productos</a>
+            <a class="collapse-item" href="DatosCategorias.php">Categorias</a>
+            <a class="collapse-item" href="DatosProveedores.php">Proveedores</a>
           </div>
         </div>
       </li>
