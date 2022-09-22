@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+unset($_SESSION["s_correo"]);
 unset($_SESSION["s_usuario"]);
 unset($_SESSION ["s_Rol_Id"]);
 unset($_SESSION ["s_rol"]);

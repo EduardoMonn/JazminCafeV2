@@ -55,7 +55,7 @@
 <!-- datatables JS -->
 <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>
 <!-- código propio JS -->
-<script type="text/javascript" src="script/mainRol.js"></script>
+<script type="text/javascript" src="script/mainCategorias.js"></script>
 
 </body>
 

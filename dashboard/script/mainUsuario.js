@@ -34,10 +34,10 @@ $(document).ready(function () {
         opcion = 1; //alta
     });
 
-    $("#btnReinicio").click(function () {
-        IdUsuario = null;
-        opcion = 4; //alta
-    });
+    // $("#btnReinicio").click(function () {
+    //     IdUsuario = null;
+    //     opcion = 4; //alta
+    // });
 
     var fila; //capturar la fila para editar o borrar el registro
 
@@ -46,16 +46,18 @@ $(document).ready(function () {
         fila = $(this).closest("tr");
         IdUsuario = parseInt(fila.find('td:eq(0)').text());
         nombre = fila.find('td:eq(1)').text();
-        correo = fila.find('td:eq(2)').text();
-        usuario = fila.find('td:eq(3)').text();
-        password = fila.find('td:eq(4)').text();
-        voto = fila.find('td:eq(5)').text();
+        apellido = fila.find('td:eq(2)').text();
+        telefono = fila.find('td:eq(3)').text();
+        correo = fila.find('td:eq(4)').text();
+        usuario = fila.find('td:eq(5)').text();
+        password = fila.find('td:eq(6)').text();
 
         $("#nombre").val(nombre);
+        $("#apellido").val(apellido);
+        $("#telefono").val(telefono);
         $("#correo").val(correo);
         $("#usuario").val(usuario);
         $("#password").val(password);
-        $("#voto").val(voto);
         opcion = 2; //editar
 
         $(".modal-header").css("background-color", "#4e73df");
@@ -88,15 +90,16 @@ $(document).ready(function () {
     $("#formUsuario").submit(function (e) {
         e.preventDefault();
         nombre = $.trim($("#nombre").val());
+        apellido = $.trim($("#apellido").val());
+        telefono = $.trim($("#telefono").val());
         correo = $.trim($("#correo").val());
         usuario = $.trim($("#usuario").val());
         password = $.trim($("#password").val());
-        voto = $.trim($("#voto").val());
         $.ajax({
             url: "bd/crudUsuario.php",
             type: "POST",
             dataType: "json",
-            data: {nombre: nombre, correo: correo, usuario: usuario, password: password , voto:voto, IdUsuario: IdUsuario, opcion: opcion },
+            data: {nombre: nombre, apellido: apellido, telefono: telefono, correo: correo, usuario: usuario, password: password , IdUsuario: IdUsuario, opcion: opcion },
             success: function (data) {
                 console.log(data);
                 IdUsuario = data[0].IdUsuario;
@@ -105,8 +108,8 @@ $(document).ready(function () {
                 usuario = data[0].usuario;
                 password = data[0].password;
                 voto = data[0].voto;
-                if (opcion == 1) { tablaUsuario.row.add([IdUsuario, nombre, correo, usuario, password,voto]).draw(); }
-                else { tablaUsuario.row(fila).data([IdUsuario, nombre, correo, usuario, password,voto]).draw(); }
+                if (opcion == 1) { tablaUsuario.row.add([IdUsuario, nombre, apellido, telefono, correo, usuario, password]).draw(); }
+                else { tablaUsuario.row(fila).data([IdUsuario, nombre, apellido, telefono, correo, usuario, password]).draw(); }
             }
         });
         $("#modalCRUD").modal("hide");

@@ -5,7 +5,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>PlayOn VideoGames</span>
+            <span>Jazmin café</span>
         </div>
     </div>
 </footer>
@@ -55,7 +55,7 @@
 <!-- datatables JS -->
 <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>
 <!-- código propio JS -->
-<script type="text/javascript" src="script/mainJuego.js"></script>
+<script type="text/javascript" src="script/mainProductos.js"></script>
 
 </body>
 

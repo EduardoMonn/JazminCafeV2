@@ -8,14 +8,14 @@
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
-    $consulta = "SELECT IdUsuario, nombre, correo, usuario, password, voto FROM Tusuarios WHERE Rol_Id='2'";
+    $consulta = "SELECT IdUsuario, nombre, apellido, telefono, correo, usuario, password FROM Usuarios WHERE Rol_Id='2'";
     $resultado = $conexion->prepare($consulta);
     
     $resultado->execute();
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
-    <?php 
+    <!-- < ?php 
     if (isset($_POST['btnReinicio'])) {
         $consulta = "UPDATE Tusuarios SET voto=0 WHERE Rol_Id=2";
     $resultado = $conexion->prepare($consulta);
@@ -23,17 +23,17 @@
 
     echo '<script>window.location.href="DatosUsuario.php";</script>';
     }
-    ?>
+    ?> -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>
             </div> <br> <br>
-            <form action="" method="POST">
+            <!-- <form action="" method="POST">
             <div class="col-lg-2">
             <input type="submit" name="btnReinicio" class="btn btn-dark" data-toggle="modal" value="Reinciar Encuestas">
             </div>
-            </form>
+            </form> -->
         </div>
     </div>
     <br>
@@ -45,11 +45,12 @@
                         <thead class="text-center">
                             <tr>
                                 <th>Clave</th>
-                                <th>Nombre</th>
+                                <th>Nombre(s)</th>
+                                <th>Apellidos</th>
+                                <th>Telefono</th>
                                 <th>Correo</th>
-                                <th>Usuarios</th>
+                                <th>Usuario</th>
                                 <th>Contraseña</th>
-                                <th>Votos</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -60,10 +61,11 @@
                                 <tr>
                                     <td><?php echo $dat['IdUsuario'] ?></td>
                                     <td><?php echo $dat['nombre'] ?></td>
+                                    <td><?php echo $dat['apellido'] ?></td>
+                                    <td><?php echo $dat['telefono'] ?></td>
                                     <td><?php echo $dat['correo'] ?></td>
                                     <td><?php echo $dat['usuario'] ?></td>
                                     <td><?php echo $dat['password'] ?></td>
-                                    <td><?php echo $dat['voto'] ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -87,27 +89,35 @@
                 </div>
                 <form id="formUsuario">
                     <div class="modal-body">
-                        <div class="form-group">
+                    <div class="form-group">
                             <label for="nombre" class="col-form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre">
+                            <input type="text" class="form-control" id="nombre" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido" class="col-form-label">Apellidos:</label>
+                            <input type="text" class="form-control" id="apellido" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono" class="col-form-label">Telefono:</label>
+                            <input type="text" class="form-control" id="telefono" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="correo" class="col-form-label">Correo:</label>
-                            <input type="text" class="form-control" id="correo">
+                            <input type="text" class="form-control" id="correo" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="usuario" class="col-form-label">Usuario:</label>
-                            <input type="text" class="form-control" id="usuario">
+                            <input type="text" class="form-control" id="usuario" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="password" class="col-form-label">Contraseña:</label>
-                            <input type="text" class="form-control" id="password">
+                            <input type="text" class="form-control" id="password" autocomplete="off">
                         </div>
-                     
-                        <div class="form-group">
+
+                        <!-- <div class="form-group">
                             <label for="rol" class="col-form-label">Rol:</label>
                             <select name="rol" id="rol">
-                                <?php 
+                                < ?php 
                                 include ("../PHP/conexion.php");
                                 $query = $mysqli -> query ("SELECT * FROM Roles WHERE Id>1 ");
                                 while ($valores = mysqli_fetch_array($query)) {
@@ -115,7 +125,7 @@
                                 }
                                 ?>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>

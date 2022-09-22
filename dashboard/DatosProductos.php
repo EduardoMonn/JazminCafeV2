@@ -2,13 +2,13 @@
 
 <!--INICIO del cont principal-->
 <div class="container">
-    <h1>Página de juegos</h1>
+    <h1>Página de productos</h1>
     <?php
     include_once 'bd/conexion.php';
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
-    $consulta = "SELECT IdJuego,nombre,genero,instrucciones,repositorio,url_img FROM Juegos";
+    $consulta = "SELECT CvProducto,DsProducto,Contenido,CvProveedor,CvCategoria,Precio,Stock FROM Productos";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -30,12 +30,12 @@
                         <thead class="text-center">
                             <tr>
                                 <th>Clave</th>
-                                <th>Nombre</th>
-                                <th>Genero</th>
-                                <th>Instrucciones</th>
-                                <th>Repositorio</th>
-                                <th>Imagen URL</th>
-                                <th>Acciones</th>
+                                <th>Producto</th>
+                                <th>Contenido</th>
+                                <th>Proveedor</th>
+                                <th>Categoria</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,12 +43,13 @@
                             foreach ($data as $dat) {
                             ?>
                                 <tr>
-                                    <td><?php echo $dat['IdJuego'] ?></td>
-                                    <td><?php echo $dat['nombre'] ?></td>
-                                    <td><?php echo $dat['genero'] ?></td>
-                                    <td><?php echo $dat['instrucciones'] ?></td>
-                                    <td><?php echo $dat['repositorio'] ?></td>
-                                    <td><?php echo $dat['url_img']?></td>
+                                    <td><?php echo $dat['CvProducto'] ?></td>
+                                    <td><?php echo $dat['DsProducto'] ?></td>
+                                    <td><?php echo $dat['Contenido'] ?></td>
+                                    <td><?php echo $dat['CvProveedor'] ?></td>
+                                    <td><?php echo $dat['CvCategoria'] ?></td>
+                                    <td><?php echo $dat['Precio']?></td>
+                                    <td><?php echo $dat['Stock']?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -103,4 +104,4 @@
     </div>
 </div>
 <!--FIN del cont principal-->
-<?php require_once "vistas/parte_inferior_juego.php" ?>
+<?php require_once "vistas/parte_inferior_productos.php" ?>

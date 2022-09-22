@@ -5,7 +5,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>PlayOn VideoGames</span>
+            <span>Jazmin Café</span>
         </div>
     </div>
 </footer>
@@ -35,7 +35,7 @@
             <div class="modal-body"></div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="../../PHP/logout.php">Salir</a>
+                <a class="btn btn-primary" href="../PHP/logout.php">Salir</a>
 
             </div>
         </div>

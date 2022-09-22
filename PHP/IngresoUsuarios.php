@@ -12,7 +12,7 @@ $password = (isset($_POST['password'])) ? $_POST['password'] :'';
 
 $pass = md5($password); //*encriptacion de la clave enviada por el usuario para compararla con la clave en la DB
 
-$consulta = "SELECT Usuarios.IdUsuario, Usuarios.Rol_Id, Roles.rol AS rol FROM Usuarios JOIN Roles ON Roles.Id=Usuarios.Rol_Id WHERE correo = '$correo' AND password='$pass'";
+$consulta = "SELECT Usuarios.IdUsuario, Usuarios.Rol_Id, Roles.rol, Usuarios.usuario AS rol FROM Usuarios JOIN Roles ON Roles.Id=Usuarios.Rol_Id WHERE correo = '$correo' AND password='$pass'";
 
     try{
         $resultado = $conexion -> prepare($consulta);
