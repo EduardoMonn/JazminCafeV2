@@ -27,6 +27,7 @@ if ($_SESSION["s_correo"] == null) {
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+  
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -48,7 +49,8 @@ if ($_SESSION["s_correo"] == null) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../dashboard/dash.php">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <!-- <i class="fas fa-laugh-wink"></i> -->
+          <i class='fas fa-coffee'></i> 
         </div>
         <div class="sidebar-brand-text mx-3">Jazmin café<sup></sup></div>
       </a>
@@ -59,7 +61,7 @@ if ($_SESSION["s_correo"] == null) {
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="../dashboard/dash.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class='fas fa-user-circle'></i> 
           <span>Inicio</span></a>
       </li>
 
@@ -74,7 +76,7 @@ if ($_SESSION["s_correo"] == null) {
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-folder"></i>
+        <i class='fas fa-user-tie'></i>
 
           <span>Administrador</span>
         </a>
@@ -93,7 +95,7 @@ if ($_SESSION["s_correo"] == null) {
       </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
+        <i class='fas fa-box'></i>
           <span>Productos</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
