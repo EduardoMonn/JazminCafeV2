@@ -57,12 +57,12 @@ $('#formulario_login').submit(function (e) {
 $('#formulario_registro').submit(function (e) {
     e.preventDefault();
     var nombre = $.trim($("#nombre").val());
-    var apellidos = $.trim($("#apellidos").val());
+    var apellido = $.trim($("#apellido").val());
     var telefono = $.trim($("#telefono").val());
     var correo = $.trim($("#correo").val());
     var usuario = $.trim($("#usuario").val());
     var password = $.trim($("#password").val());
-    if (nombre.lenght == "" || apellidos.lenght == "" || telefono == "" || correo.lenght == "" || usuario.lenght == "" || password == "") {
+    if (nombre.lenght == "" || apellido.lenght == "" || telefono == "" || correo.lenght == "" || usuario.lenght == "" || password == "") {
         Swal.fire({
             icon: "warning",
             title: "Debe llenar los campos",
@@ -73,7 +73,7 @@ $('#formulario_registro').submit(function (e) {
             url: "PHP/RegistroUsuarios.php",
             type: "POST",
             datatype: "json",
-            data: { nombre: nombre, apellidos: apellidos, telefono: telefono, correo: correo, usuario: usuario, password: password },
+            data: { nombre: nombre, apellido: apellido, telefono: telefono, correo: correo, usuario: usuario, password: password },
             success: function (resul) {
                 if (resul == 1) {
                     Swal.fire({

@@ -135,7 +135,7 @@
 								<div class="col-12 col-md-4">
 									<div class="form-outline mb-4">
 										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,35}" class="form-control"
-											name="apellidos" id="apellidos" maxlength="35">
+											name="apellido" id="apellido" maxlength="35">
 										<label for="cliente_apellido" class="form-label">Apellidos <i
 												class="fab fa-font-awesome-alt"></i></label>
 									</div>

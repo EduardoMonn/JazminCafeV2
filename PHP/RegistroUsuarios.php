@@ -8,7 +8,7 @@ $conexion = $objeto->Conectar();
 
 //*recepcion de las datos enviados mediante el metodo post desde ajax
 $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] :'';
-$apellidos = (isset($_POST['apellidos'])) ? $_POST['apellidos'] :'';
+$apellido = (isset($_POST['apellido'])) ? $_POST['apellido'] :'';
 $telefono = (isset($_POST['telefono'])) ? $_POST['telefono'] :'';
 $correo = (isset($_POST['correo'])) ? $_POST['correo'] :'';
 $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] :'';
@@ -21,7 +21,7 @@ $resul = $conexion->prepare($verificar);
 $resul->execute();
 
 if ($resul->rowCount()==0) {
-    $consulta = "INSERT INTO Usuarios(nombre,apellidos,telefono,correo,usuario,password,token,Rol_Id) VALUES ('$nombre','$apellidos','$telefono','$correo','$usuario','$pass','','2')";
+    $consulta = "INSERT INTO Usuarios(nombre,apellido,telefono,correo,usuario,password,token,Rol_Id) VALUES ('$nombre','$apellido','$telefono','$correo','$usuario','$pass','','2')";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     echo 1;

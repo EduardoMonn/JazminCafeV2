@@ -46,7 +46,7 @@
                             <tr>
                                 <th>Clave</th>
                                 <th>Nombre(s)</th>
-                                <th>Apellidos</th>
+                                <th>apellido</th>
                                 <th>Telefono</th>
                                 <th>Correo</th>
                                 <th>Usuario</th>
