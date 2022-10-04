@@ -85,6 +85,13 @@ html {
 .poppins-regular {
 	font-family: 'poppinsregular';
 }
+/*! Modificaciones  */
+
+header .header-brand a img {
+	width: 160px;
+	height: 50px;
+}
+/*! fin de las modificaciones  */
 
 /*=========== barra de navegación (web) ===========*/
 .header,
@@ -100,6 +107,7 @@ html {
 }
 
 .header {
+	background: #980134;
 	border-bottom: 1px solid rgba(0, 0, 0, .1);
 	position: relative;
 	color: var(--text-color);
@@ -113,9 +121,7 @@ html {
 	align-items: center;
 }
 
-.header-brand img {
-	max-width: calc(var(--header-height) - 8px);
-}
+
 
 .header-options {
 	width: 75%;

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    tablaJuego = $("#tablaJuego").DataTable({
+    tablaProductos = $("#tablaProductos").DataTable({
         "columnDefs": [{
             "targets": -1,
             "data": null,
@@ -24,12 +24,12 @@ $(document).ready(function () {
     });
 
     $("#btnNuevo").click(function () {
-        $("#formJuego").trigger("reset");
+        $("#formProductos").trigger("reset");
         $(".modal-header").css("background-color", "#1cc88a");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Ingresa los datos");
         $("#modalCRUD").modal("show");
-        IdJuego = null;
+        CvProducto = null;
         opcion = 1; //alta
     });
 
@@ -38,18 +38,20 @@ $(document).ready(function () {
     //botón EDITAR    
     $(document).on("click", ".btnEditar", function () {
         fila = $(this).closest("tr");
-        IdJuego = parseInt(fila.find('td:eq(0)').text());
-        nombre = fila.find('td:eq(1)').text();
-        genero = fila.find('td:eq(2)').text();
-        instrucciones = fila.find('td:eq(3)').text();
-        repositorio = fila.find('td:eq(4)').text();
-        url_img = fila.find('td:eq(5)').text();
+        CvProducto = parseInt(fila.find('td:eq(0)').text());
+        DsProducto = fila.find('td:eq(1)').text();
+        Cantidad = fila.find('td:eq(2)').text();
+        CvProveedor = fila.find('td:eq(3)').text();
+        CvCategoria = fila.find('td:eq(4)').text();
+        Precio = fila.find('td:eq(5)').text();
+        Stock = fila.find('td:eq(6)').text();
 
-        $("#nombre").val(nombre);
-        $("#genero").val(genero);
-        $("#instrucciones").val(instrucciones);
-        $("#repositorio").val(repositorio);
-        $("#url_img").val(url_img);
+        $("#DsProducto").val(DsProducto);
+        $("#Cantidad").val(Cantidad);
+        $("#CvProveedor").val(CvProveedor);
+        $("#CvCategoria").val(CvCategoria);
+        $("#Precio").val(Precio);
+        $("#Stock").val(Stock);
         opcion = 2; //editar
 
         $(".modal-header").css("background-color", "#4e73df");
@@ -62,44 +64,46 @@ $(document).ready(function () {
     //botón BORRAR
     $(document).on("click", ".btnBorrar", function () {
         fila = $(this);
-        IdJuego = parseInt($(this).closest("tr").find('td:eq(0)').text());
+        CvProducto = parseInt($(this).closest("tr").find('td:eq(0)').text());
         opcion = 3 //borrar
-        var respuesta = confirm("¿Está seguro de eliminar el registro: " + IdJuego + "?");
+        var respuesta = confirm("¿Está seguro de eliminar el registro: " + CvProducto + "?");
         if (respuesta) {
             $.ajax({
-                url: "bd/crudJuego.php",
+                url: "bd/crudProductos.php",
                 type: "POST",
                 dataType: "json",
-                data: { opcion: opcion, IdJuego: IdJuego },
+                data: { opcion: opcion, CvProducto: CvProducto },
                 success: function () {
-                    tablaJuego.row(fila.parents('tr')).remove().draw();
+                    tablaProductos.row(fila.parents('tr')).remove().draw();
                 }
             });
         }
     });
 
-    $("#formJuego").submit(function (e) {
+    $("#formProductos").submit(function (e) {
         e.preventDefault();
-        nombre = $.trim($("#nombre").val());
-        genero = $.trim($("#genero").val());
-        instrucciones = $.trim($("#instrucciones").val());
-        repositorio = $.trim($("#repositorio").val());
-        url_img = $.trim($("#url_img").val());
+        DsProducto = $.trim($("#DsProducto").val());
+        Cantidad = $.trim($("#Cantidad").val());
+        CvProveedor = $.trim($("#CvProveedor").val());
+        CvCategoria = $.trim($("#CvCategoria").val());
+        Precio = $.trim($("#Precio").val());
+        Stock = $.trim($("#Stock").val());
         $.ajax({
-            url: "bd/crudJuego.php",
+            url: "bd/crudProductos.php",
             type: "POST",
             dataType: "json",
-            data: {nombre: nombre, genero: genero, instrucciones: instrucciones, repositorio: repositorio, url_img:url_img , IdJuego: IdJuego, opcion: opcion },
+            data: {DsProducto: DsProducto, Cantidad: Cantidad, CvProveedor: CvProveedor, CvCategoria: CvCategoria, Precio:Precio, Stock:Stock, CvProducto: CvProducto, opcion: opcion },
             success: function (data) {
                 console.log(data);
-                IdJuego = data[0].IdJuego;
-                nombre = data[0].nombre;
-                genero = data[0].genero;
-                instrucciones = data[0].instrucciones;
-                repositorio = data[0].repositorio;
-                url_img = data[0].url_img;
-                if (opcion == 1) { tablaJuego.row.add([IdJuego, nombre, genero, instrucciones, repositorio,url_img]).draw(); }
-                else { tablaJuego.row(fila).data([IdJuego, nombre, genero, instrucciones, repositorio,url_img]).draw(); }
+                CvProducto = data[0].CvProducto;
+                DsProducto = data[0].DsProducto;
+                Cantidad = data[0].Cantidad;
+                CvProveedor = data[0].CvProveedor;
+                CvCategoria = data[0].CvCategoria;
+                Precio = data[0].Precio;
+                Stock = data[0].Stock;
+                if (opcion == 1) { tablaProductos.row.add([CvProducto, DsProducto, Cantidad, CvProveedor, CvCategoria, Precio, Stock]).draw(); }
+                else { tablaProductos.row(fila).data([CvProducto, DsProducto, Cantidad, CvProveedor, CvCategoria, Precio, Stock]).draw(); }
             }
         });
         $("#modalCRUD").modal("hide");

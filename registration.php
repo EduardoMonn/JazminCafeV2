@@ -28,10 +28,10 @@
 <body id="main-body">
 
 	<!-- Header -->
-	<header class="header full-box bg-white">
-		<div class="header-brand full-box">
+	<header class="header">
+		<div class="header-brand">
 			<a href="index.php">
-				<img src="./assets/img/logo.png" alt="Designlopers" class="img-fluid">
+				<img src="./assets/img/JazminCafe.png">
 			</a>
 		</div>
 
@@ -42,7 +42,7 @@
 						<a href="index.php">Inicio</a>
 					</li>
 					<li>
-						<a href="menu.php">Menú</a>
+						<a href="Categorias.php">Menú</a>
 					</li>
 					<li>
 						<a href="registration.php">Regístrate</a>
@@ -242,7 +242,7 @@
 				<div class="col-12 col-md-4">
 					<ul class="list-unstyled">
 						<li>
-							<h5 class="font-weight-bold"><i class="far fa-copyright"></i> SIWEP</h5>
+							<h5 class="font-weight-bold"><i class="far fa-copyright"></i>&copy;2022, Equipo 4</h5>
 						</li>
 						<li> Todos los derechos reservados </li>
 					</ul>

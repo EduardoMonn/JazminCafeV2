@@ -38,23 +38,21 @@
         <li class="btn"><a href="signin.php"><i class="fa-solid fa-user-check"></i> Iniciar sesion</a></li>
     </header>
 
-    <!--! slider principal  -->
-    <div class="contenedor">
-        <div class="slider">
-            <ul>
-                <li><img src="assets/img/1.jpg" alt=""></li>
-                <li><img src="assets/img/2.jpg" alt=""></li>
-                <li><img src="assets/img/3.jpg" alt=""></li>
-                <li><img src="assets/img/4.jpg" alt=""></li>
-
-            </ul>
-        </div>
+    <!--! categorias  -->
+    <div class="select">
+        <select name="format" id="format">
+            <option selected disabled>Grano</option>
+            <option value="1">Molido</option>
+            <option value="2">1Kg</option>
+            <option value="3">1/2Kg</option>
+            <option value="4">1/4Kg</option>
+        </select>
     </div>
 
     <!--! productos -->
     <div class="mai-content">
         <div class="content-page">
-            <div class="title-section">Productos</div>
+            <div class="title-section"></div>
             <div class="products-list">
 
                 <div class="products-box">
