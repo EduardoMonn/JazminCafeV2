@@ -26,16 +26,7 @@ $('#formulario_login').submit(function (e) {
                             window.location.href = "signin.php";
                         }
                     });
-                } else if (data == "1") {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Demasiados intentos fallidos, Intentelo de nuevo en 1 minuto",
-                    }).then((result) => {
-                        if (result.value) {
-                            window.location.href = "index.php";
-                        }
-                    });
-                } else {
+                }else {
                     Swal.fire({
                         icon: "success",
                         title: "Conexion establecida, Bienvenido",

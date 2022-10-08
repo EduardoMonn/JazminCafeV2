@@ -16,12 +16,12 @@ $password = (isset($_POST['password'])) ? $_POST['password'] :'';
 
 $pass = md5($password); //*encriptacion de la clave enviada por el usuario para compararla con la clave en la DB
 
-$verificar = "SELECT * FROM Usuarios WHERE correo = '$correo'";
+$verificar = "SELECT * FROM usuarios WHERE correo = '$correo'";
 $resul = $conexion->prepare($verificar);
 $resul->execute();
 
 if ($resul->rowCount()==0) {
-    $consulta = "INSERT INTO Usuarios(nombre,apellido,telefono,correo,usuario,password,token,Rol_Id) VALUES ('$nombre','$apellido','$telefono','$correo','$usuario','$pass','','2')";
+    $consulta = "INSERT INTO usuarios(nombre,apellido,telefono,correo,usuario,password,token,Rol_Id) VALUES ('$nombre','$apellido','$telefono','$correo','$usuario','$pass','','2')";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     echo 1;

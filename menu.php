@@ -66,9 +66,6 @@
 					<small>Nombre de usuario</small>
 				</p>
 				<a class="dropdown-item" href="javascript:void(0);">
-					<i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard
-				</a>
-				<a class="dropdown-item" href="javascript:void(0);">
 					<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar sesión
 				</a>
 			</div>

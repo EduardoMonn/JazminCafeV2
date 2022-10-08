@@ -7,7 +7,7 @@ if ($_SESSION["s_correo"] == null) {
 } else {
   if ($_SESSION["s_Rol_Id"] != 1) {
     //! verificar
-    header("Location: ../../proyecto_playon/Vistas/Pagina_usuario.php");
+    header("Location: ../index.php");
   }
 }
 ?>
