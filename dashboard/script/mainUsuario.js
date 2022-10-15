@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     $("#btnNuevo").click(function () {
         $("#formUsuario").trigger("reset");
-        $(".modal-header").css("background-color", "#1cc88a");
+        $(".modal-header").css("background-color", "#980134");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Ingresa los datos");
         $("#modalCRUD").modal("show");
@@ -60,7 +60,7 @@ $(document).ready(function () {
         $("#password").val(password);
         opcion = 2; //editar
 
-        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("background-color", "#980134");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Editar Información");
         $("#modalCRUD").modal("show");

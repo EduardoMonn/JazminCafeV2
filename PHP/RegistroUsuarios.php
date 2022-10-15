@@ -28,11 +28,6 @@ if ($resul->rowCount()==0) {
 }else{
     echo 0;
 }
-
-
-
-
-
 /*if ($resultado->rowCount() >= 1) {
     $data = $resultado -> fetchAll(PDO::FETCH_ASSOC);
     $_SESSION ["s_usuario"] = $usuario;

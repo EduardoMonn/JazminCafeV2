@@ -8,9 +8,10 @@
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
-    $consulta = "SELECT CvProducto, DsProducto, Contenido, Dsproducto, DsCategoria, Precio, Stock
-    FROM productos, proveedores, categorias
-    WHERE productos.CvProveedor=proveedores.CvProveedor and productos.CvCategoria=categorias.CvCategoria;";
+
+    $consulta = "SELECT CvProducto, DsProducto, Contenido, Nombre, DsCategoria, Precio, Stock
+    FROM Productos, Proveedores, Categorias
+    WHERE Productos.CvProveedor=Proveedores.CvProveedor and Productos.CvCategoria=Categorias.CvCategoria;";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -49,7 +50,7 @@
                                     <td><?php echo $dat['CvProducto'] ?></td>
                                     <td><?php echo $dat['DsProducto'] ?></td>
                                     <td><?php echo $dat['Contenido'] ?></td>
-                                    <td><?php echo $dat['Dsproducto'] ?></td>
+                                    <td><?php echo $dat['Nombre'] ?></td>
                                     <td><?php echo $dat['DsCategoria'] ?></td>
                                     <td><?php echo $dat['Precio']?></td>
                                     <td><?php echo $dat['Stock']?></td>
@@ -100,7 +101,9 @@
                             <label for="Stock" class="col-form-label">Cantidad:</label>
                             <input type="text" class="form-control" id="Stock">
                         </div>
+                        
                     </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
                         <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
@@ -112,3 +115,16 @@
 </div>
 <!--FIN del cont principal-->
 <?php require_once "vistas/parte_inferior_productos.php" ?>
+<!--
+<div class="form-group">
+                            <label for="CvProveedores" class="col-form-label">Proveedor:</label>
+                            <select name="CvProveedores" class="form-control" id="CvProveedores">
+                                < ?php 
+                                include ("bd/conexion.php");
+                                $query = $mysqli -> query ("SELECT CvProveedor, Nombre FROM proveedores;");
+                                while ($valor = mysqli_fetch_array($query)) {
+                                    echo '<option value="'.$valor["CvProveedor"].'">'.$valor["Nombre"].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div> -->

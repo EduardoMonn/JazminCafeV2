@@ -6,7 +6,6 @@ if ($_SESSION["s_correo"] == null) {
   header("Location: ../dash.php");
 } else {
   if ($_SESSION["s_Rol_Id"] != 1) {
-    //! verificar
     header("Location: ../index.php");
   }
 }
@@ -18,7 +17,7 @@ if ($_SESSION["s_correo"] == null) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="stylesheet" href="../../Vistas/Pagina_Usuario.php">
+  <!-- <link rel="stylesheet" href="../../Vistas/Pagina_Usuario.php"> -->
 
   <title>Login de administrador</title>
 

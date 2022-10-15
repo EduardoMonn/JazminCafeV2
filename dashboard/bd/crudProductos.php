@@ -15,7 +15,7 @@ $CvProducto = (isset($_POST['CvProducto'])) ? $_POST['CvProducto'] : '';
 
 switch($opcion){
     case 1: //alta
-        $consulta = "INSERT INTO Productos (DsProducto, Contenido, CvProveedor, CvCategoria, Precio, Stock) VALUES('$DsProducto', '$Contenido', ','$CvProveedor','$CvCategoria') ";			
+        $consulta = "INSERT INTO Productos (DsProducto, Contenido, CvProveedor, CvCategoria, Precio, Stock) VALUES('$DsProducto', '$Contenido', '$CvProveedor', '$CvCategoria', '$Precio','$Stock') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
 
@@ -39,7 +39,7 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();  
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);                         
-        break;        
+        break;
 }
 
 print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS

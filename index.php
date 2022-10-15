@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <?php
 session_start();
 if(isset($_SESSION['s_correo'])){
-    include 'cabeceraInicio.php';
+    require_once 'cabeceraInicio.php';
 }
 else{
-    include 'cabecera.php';
+    require_once 'cabecera.php';
 }                       
 ?>
 <head>
@@ -43,11 +42,8 @@ else{
     <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
 
 </head>
-
 <body>
-
     <!--! encabezado  -->
-    
 
     <!--! slider principal  -->
     <div class="contenedor">

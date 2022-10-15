@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     tablaProductos = $("#tablaProductos").DataTable({
         "columnDefs": [{
@@ -25,7 +26,7 @@ $(document).ready(function () {
 
     $("#btnNuevo").click(function () {
         $("#formProductos").trigger("reset");
-        $(".modal-header").css("background-color", "#1cc88a");
+        $(".modal-header").css("background-color", "#980134");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Ingresa los datos");
         $("#modalCRUD").modal("show");
@@ -40,21 +41,21 @@ $(document).ready(function () {
         fila = $(this).closest("tr");
         CvProducto = parseInt(fila.find('td:eq(0)').text());
         DsProducto = fila.find('td:eq(1)').text();
-        Cantidad = fila.find('td:eq(2)').text();
+        Contenido = fila.find('td:eq(2)').text();
         CvProveedor = fila.find('td:eq(3)').text();
         CvCategoria = fila.find('td:eq(4)').text();
         Precio = fila.find('td:eq(5)').text();
         Stock = fila.find('td:eq(6)').text();
 
         $("#DsProducto").val(DsProducto);
-        $("#Cantidad").val(Cantidad);
+        $("#Contenido").val(Contenido);
         $("#CvProveedor").val(CvProveedor);
         $("#CvCategoria").val(CvCategoria);
         $("#Precio").val(Precio);
         $("#Stock").val(Stock);
         opcion = 2; //editar
 
-        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("background-color", "#980134");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Editar Información");
         $("#modalCRUD").modal("show");
@@ -80,10 +81,11 @@ $(document).ready(function () {
         }
     });
 
+
     $("#formProductos").submit(function (e) {
         e.preventDefault();
         DsProducto = $.trim($("#DsProducto").val());
-        Cantidad = $.trim($("#Cantidad").val());
+        Contenido = $.trim($("#Contenido").val());
         CvProveedor = $.trim($("#CvProveedor").val());
         CvCategoria = $.trim($("#CvCategoria").val());
         Precio = $.trim($("#Precio").val());
@@ -92,22 +94,20 @@ $(document).ready(function () {
             url: "bd/crudProductos.php",
             type: "POST",
             dataType: "json",
-            data: {DsProducto: DsProducto, Cantidad: Cantidad, CvProveedor: CvProveedor, CvCategoria: CvCategoria, Precio:Precio, Stock:Stock, CvProducto: CvProducto, opcion: opcion },
+            data: {DsProducto: DsProducto, Contenido: Contenido, CvProveedor: CvProveedor, CvCategoria: CvCategoria, Precio: Precio, Stock: Stock , CvProducto: CvProducto, opcion: opcion },
             success: function (data) {
                 console.log(data);
                 CvProducto = data[0].CvProducto;
                 DsProducto = data[0].DsProducto;
-                Cantidad = data[0].Cantidad;
+                Contenido = data[0].Contenido;
                 CvProveedor = data[0].CvProveedor;
                 CvCategoria = data[0].CvCategoria;
                 Precio = data[0].Precio;
                 Stock = data[0].Stock;
-                if (opcion == 1) { tablaProductos.row.add([CvProducto, DsProducto, Cantidad, CvProveedor, CvCategoria, Precio, Stock]).draw(); }
-                else { tablaProductos.row(fila).data([CvProducto, DsProducto, Cantidad, CvProveedor, CvCategoria, Precio, Stock]).draw(); }
+                if (opcion == 1) { tablaProductos.row.add([CvProducto, DsProducto, Contenido, CvProveedor, CvCategoria, Precio, Stock]).draw(); }
+                else { tablaProductos.row(fila).data([CvProducto, DsProducto, Contenido, CvProveedor, CvCategoria, Precio, Stock]).draw(); }
             }
         });
         $("#modalCRUD").modal("hide");
-
     });
-
 });

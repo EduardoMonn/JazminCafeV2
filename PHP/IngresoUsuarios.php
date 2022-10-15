@@ -19,6 +19,7 @@ $consulta = "SELECT usuarios.IdUsuario, usuarios.Rol_Id, Roles.rol, usuarios.usu
         $resultado->execute();
         if(isset($_COOKIE["block".$correo])){
             $_SESSION ["s_correo"] = null;
+            // $_SESSION ["s_usuario"] = null;
             $data = 1;
         }else{ 
             if ($resultado->rowCount() >= 1) {

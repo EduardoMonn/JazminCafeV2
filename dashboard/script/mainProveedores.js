@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     $("#btnNuevo").click(function () {
         $("#formProveedores").trigger("reset");
-        $(".modal-header").css("background-color", "#1cc88a");
+        $(".modal-header").css("background-color", "#980134");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Ingresa los datos");
         $("#modalProveedores").modal("show");
@@ -48,7 +48,7 @@ $(document).ready(function () {
         $("#telefono").val(telefono);
         opcion = 2; //editar
 
-        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("background-color", "#980134");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Editar Información");
         $("#modalProveedores").modal("show");
