@@ -40,7 +40,7 @@
 				<a class="dropdown-item" href="PHP/EditarPerfil.php">
 					<i class='fas fa-user-tie'></i> &nbsp;Editar Perfil
 				</a>
-				<a class="dropdown-item" href="#">
+				<a class="dropdown-item" href="PHP/logout.php">
 					<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar sesión
 				</a>
 			</div>

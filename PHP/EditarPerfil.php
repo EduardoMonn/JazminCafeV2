@@ -62,14 +62,66 @@ include "FuncionUsuario.php";
             <div class="col-sm-3">
                 <!--left col-->
 
+                <!-- Agregar imagenes a la DB -->
+                <?php
+                if (isset($_REQUEST['guardarFoto'])) {
+                    if ($_FILES['foto']['name']) {
+                        $tipoArchivo = $_FILES['foto']['type'];
+                        $nombreArchivo = $_FILES['foto']['name'];
+                        $tamanoArchivo = $_FILES['foto']['size'];
+                        $imagenSubida = fopen($_FILES['foto']['tmp_name'],'r');
+                        $binariosImagen = fread($imagenSubida,$tamanoArchivo);
+                        include_once '../PHP/conexionPerfil.php';
+                        $con = mysqli_connect("localhost", "root", "", "JazminCafeDB");
+                        $binariosImagen=mysqli_escape_string($con,$binariosImagen);
+                        $query = ("UPDATE Usuarios SET nombreimg='".$nombreArchivo."', img='".$binariosImagen."', tipoimg='".$tipoArchivo."' WHERE IdUsuario = '" . $_SESSION['s_IdUsuario'] . "'");
+                        
+                        $res = mysqli_query($con,$query);
+                        if ($res) {
+                            echo '<script>
+                                                swal("Excelente!", "Se ha actualizado tu foto de perfil", "success")
+                                                .then((value) => {
+                                                    window.location.href = "EditarPerfil.php";
+                                                });
+                                            </script>';
+                        }
+                        else{
+                            echo '<script>
+                                        swal("Advertencia!", "Tu perfil no se ha actualizado", "warning")
+                                        .then((value) => {
+                                            window.location.href = "EditarPerfil.php";
+                                        });
+                                    </script>';
+                        }
+                    }
+                }
+                ?>
 
+                <!-- convertir en imagen el binario -->
+                <?php
+                include_once '../PHP/conexionPerfil.php';
+                $con = mysqli_connect("localhost", "root", "", "JazminCafeDB");
+                $query = ("SELECT nombreimg, img, tipoimg FROM Usuarios WHERE IdUsuario = '" . $_SESSION['s_IdUsuario'] . "' ");
+                $res = mysqli_query($con, $query);
+                while ($row = mysqli_fetch_array($res)) {
+                ?>
+                
+                
+                <form method="post" enctype="multipart/form-data">
                 <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <img src="data:image/<?php echo $row['tipoimg'] ?>;base64,<?php echo base64_encode($row['img']) ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%;">
                     <h6>sube una foto diferente...</h6>
-                    <input type="file" class="text-center center-block file-upload">
+                    <input type="file" class="text-center center-block file-upload" name="foto">
+                    <br>
+                    <hr>
+                    
+                <button class="btn btn-lg btn-success" name="guardarFoto" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Guardar foto</button>
                 </div>
+                </form>
+                
                 </hr><br>
-
+                <?php
+                }?>
             </div>
             <!--/col-3-->
             <div class="col-sm-9">
@@ -112,13 +164,18 @@ include "FuncionUsuario.php";
                                 }
                             }
                             ?>
+                            <script>
+                                function mayus(e){
+                                e.value = e.value.toUpperCase();
+                            }
+                            </script>
                             <div class="form-group">
 
                                 <div class="col-xs-6">
                                     <label for="first_name">
                                         <h4>Nombre</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $rowA['nombre']; ?>" title="ingresa tu nombre">
+                                    <input type="text" onkeyup="mayus(this);" style="color: #980134;" class="form-control" name="nombre" id="nombre" value="<?php echo $rowA['nombre']; ?>" title="ingresa tu nombre">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -127,7 +184,7 @@ include "FuncionUsuario.php";
                                     <label for="last_name">
                                         <h4>Apellidos</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="apellido" id="apellido" value="<?php echo $rowA['apellido']; ?>" title="ingresa tu apellido">
+                                    <input type="text" onkeyup="mayus(this);" style="color: #980134;" class="form-control" name="apellido" id="apellido" value="<?php echo $rowA['apellido']; ?>" title="ingresa tu apellido">
                                 </div>
                             </div>
 
@@ -137,7 +194,7 @@ include "FuncionUsuario.php";
                                     <label for="phone">
                                         <h4>Telefono</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="telefono" id="telefono" value="<?php echo $rowA['telefono']; ?>" title="ingresa tu numero telefonico">
+                                    <input type="text" style="color: #980134;" class="form-control" name="telefono" id="telefono" value="<?php echo $rowA['telefono']; ?>" title="ingresa tu numero telefonico">
                                 </div>
                             </div>
 
@@ -146,7 +203,7 @@ include "FuncionUsuario.php";
                                     <label for="correo">
                                         <h4>Correo</h4>
                                     </label>
-                                    <input type="email" class="form-control" name="correo" id="correo" value="<?php echo $rowA['correo']; ?>" title="ingresa tu correo personal" disabled>
+                                    <input type="email" style="color: #980134;" class="form-control" name="correo" id="correo" value="<?php echo $rowA['correo']; ?>" title="ingresa tu correo personal" disabled>
                                 </div>
                             </div>
 
@@ -156,7 +213,7 @@ include "FuncionUsuario.php";
                                     <label for="usuario">
                                         <h4>Usuario</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="usuario" id="usuario" value="<?php echo $rowA['usuario']; ?>" title="ingresa tu usuario">
+                                    <input type="text" onkeyup="mayus(this);" style="color: #980134;" class="form-control" name="usuario" id="usuario" value="<?php echo $rowA['usuario']; ?>" title="ingresa tu usuario">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -167,7 +224,6 @@ include "FuncionUsuario.php";
                                 </div>
                             </div>
                         </form>
-
                     </div>
                     <!--/tab-pane-->
                     <div class="tab-pane" id="messages">
