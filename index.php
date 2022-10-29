@@ -2,35 +2,33 @@
 <html lang="en">
 <?php
 session_start();
-if(isset($_SESSION['s_correo'])){
+if (isset($_SESSION['s_correo'])) {
     require_once 'cabeceraInicio.php';
-}
-else{
+} else {
     require_once 'cabecera.php';
-}                       
+}
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JazCafe</title>
     <!-- Normalize V8.0.1 -->
-	<link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/normalize.css">
 
-	<!-- MDBootstrap V5 -->
-	<link rel="stylesheet" href="./css/mdb.min.css">
+    <!-- MDBootstrap V5 -->
+    <link rel="stylesheet" href="./css/mdb.min.css">
 
-	<!-- Font Awesome V5.15.1 -->
-	<link rel="stylesheet" href="./css/all.css">
+    <!-- Font Awesome V5.15.1 -->
+    <link rel="stylesheet" href="./css/all.css">
 
-	<!-- Sweet Alert V10.13.0 -->
-	<script src="./js/sweetalert2.js"></script>
+    <!-- Sweet Alert V10.13.0 -->
+    <script src="./js/sweetalert2.js"></script>
 
-	<!-- General Styles -->
-	<link rel="stylesheet" href="./css/style.css">
-    <!--+ eslitos css -->
-    <!-- barra  -->
-    <!-- <link rel="stylesheet" href="css/estiloBarra.css"> -->
+    <!-- General Styles -->
+    <link rel="stylesheet" href="./css/style.css">
+    
     <!-- footer -->
     <link rel="stylesheet" href="css/estiloFooter.css">
     <!-- slider -->
@@ -42,119 +40,56 @@ else{
     <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
-    <!--! encabezado  -->
-
     <!--! slider principal  -->
-    <div class="contenedor">
-        <div class="slider">
-            <ul>
-                <li><img src="assets/img/1.jpg" alt=""></li>
-                <li><img src="assets/img/2.jpg" alt=""></li>
-                <li><img src="assets/img/3.jpg" alt=""></li>
-                <li><img src="assets/img/4.jpg" alt=""></li>
-
-            </ul>
-        </div>
+    <div class="slider">
+        <ul>
+            <li><img src="assets/img/1.jpg" alt=""></li>
+            <li><img src="assets/img/2.jpg" alt=""></li>
+            <li><img src="assets/img/3.jpg" alt=""></li>
+            <li><img src="assets/img/4.jpg" alt=""></li>
+        </ul>
     </div>
 
     <!--! productos -->
     <div class="mai-content">
         <div class="content-page">
             <div class="title-section">Productos</div>
-            <div class="products-list">
+            <div class="products-list" id="space-list">
+                <!-- Consulta sql -->
+                <?PHP
+                // conexion a la base de datos a huevo ya me la aprendi
+                $con = mysqli_connect('localhost', 'root', '', 'jazmincafedb');
 
-                <div class="products-box">
-                    <a href="">
-                        <div class="product">
-                            <img src="assets/img/descarga.png" alt="">
-                            <div class="detail-title">Cafe negro</div>
-                            <div class="detail-description">Cafe en grano negro</div>
-                            <div class="detail-price">$ 20.<samp>99</samp></div>
-                        </div>
-                    </a>
-                </div>
+                // consulta a la table a huvo ya meros me la aprendo
+                $consu = $con->query("SELECT * FROM Productos WHERE Stock LIKE '20'");
 
-                <div class="products-box">
-                    <a href="">
-                        <div class="product">
-                            <img src="assets/img/descarga.png" alt="">
-                            <div class="detail-title">Cafe negro</div>
-                            <div class="detail-description">Cafe en grano negro</div>
-                            <div class="detail-price">$ 20.<samp>99</samp></div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="products-box">
-                    <a href="">
-                        <div class="product">
-                            <img src="assets/img/descarga.png" alt="">
-                            <div class="detail-title">Cafe negro</div>
-                            <div class="detail-description">Cafe en grano negro</div>
-                            <div class="detail-price">$ 20.<samp>99</samp></div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="products-box">
-                    <a href="">
-                        <div class="product">
-                            <img src="assets/img/descarga.png" alt="">
-                            <div class="detail-title">Cafe negro</div>
-                            <div class="detail-description">Cafe en grano negro</div>
-                            <div class="detail-price">$ 20.<samp>99</samp></div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="products-box">
-                    <a href="">
-                        <div class="product">
-                            <img src="assets/img/descarga.png" alt="">
-                            <div class="detail-title">Cafe negro</div>
-                            <div class="detail-description">Cafe en grano negro</div>
-                            <div class="detail-price">$ 20.<samp>99</samp></div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="products-box">
-                    <a href="">
-                        <div class="product">
-                            <img src="assets/img/descarga.png" alt="">
-                            <div class="detail-title">Cafe negro</div>
-                            <div class="detail-description">Cafe en grano negro</div>
-                            <div class="detail-price">$ 20.<samp>99</samp></div>
-                        </div>
-                    </a>
-                </div>
+                // Mostramos los datos mediante un ciclo por mis huvos
+                //se repetira la cantidad de productos
+                while ($res = mysqli_fetch_assoc($consu)) {
+                ?>
+                    <div class="products-box">
+                        <a href="">
+                            <div class="product">
+                                <img src="assets/img/descarga.png" alt="">
+                                <div class="detail-title"><?= $res['DsProducto'] ?></div>
+                                <div class="detail-description"><?= $res['Contenido'] ?></div>
+                                <div class="detail-price">$<?= $res['Precio'] ?><span>00</span></div>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
 
             </div>
         </div>
     </div>
 
     <!--! footer o pie de pagina -->
-    <footer>
-        <img src="assets/img/incono.png" alt="" class="logo_F">
-        <div class="social-incons-container">
-            <a href="" class="social-incon"></a>
-            <a href="" class="social-incon"></a>
-            <a href="" class="social-incon"></a>
-            <a href="" class="social-incon"></a>
-        </div>
-        <ul class="footer-menu-container">
-            <li class="menu-item">Legal</li>
-            <li class="menu-item">Privacy</li>
-            <li class="menu-item">Cookies</li>
-        </ul>
-        <span class="copyrigth">&copy;2022, Equipo 4. Todos los derechos reservados.</span>
-    </footer>
-
+    <?PHP include_once 'footer.php' ?>
     <script src="./js/mdb.min.js"></script>
-
-	<!-- General scripts -->
-	<script src="./js/main.js"></script>
+    <!-- General scripts -->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

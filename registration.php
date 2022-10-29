@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
+<?php
+session_start();
+if (isset($_SESSION['s_correo'])) {
+    require_once 'cabeceraInicio.php';
+} else {
+    require_once 'cabecera.php';
+}
+?>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport"
@@ -8,79 +15,33 @@
 	<title>Restaurant</title>
 
 	<!-- Normalize V8.0.1 -->
-	<link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/normalize.css">
 
-	<!-- MDBootstrap V5 -->
-	<link rel="stylesheet" href="./css/mdb.min.css">
+    <!-- MDBootstrap V5 -->
+    <link rel="stylesheet" href="./css/mdb.min.css">
 
-	<!-- Font Awesome V5.15.1 -->
-	<link rel="stylesheet" href="./css/all.css">
+    <!-- Font Awesome V5.15.1 -->
+    <link rel="stylesheet" href="./css/all.css">
 
-	<!-- Sweet Alert V10.13.0 -->
-	<script src="./js/sweetalert2.js"></script>
+    <!-- Sweet Alert V10.13.0 -->
+    <script src="./js/sweetalert2.js"></script>
 
-	<!-- General Styles -->
-	<link rel="stylesheet" href="./css/style.css">
+    <!-- General Styles -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!--+ eslitos css -->
+    <!-- barra  -->
+    <!-- <link rel="stylesheet" href="css/estiloBarra.css"> -->
+    <!-- footer -->
+    <link rel="stylesheet" href="css/estiloFooter.css">
+    
+    <!--+ kid para los iconos de la web  -->
+    <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
+
 
 	
 </head>
 
 <body id="main-body">
-
-	<!-- Header -->
-	<header class="header">
-		<div class="header-brand">
-			<a href="index.php">
-				<img src="./assets/img/JazminCafe.png">
-			</a>
-		</div>
-
-		<div class="header-options full-box">
-			<nav class="header-navbar full-box poppins-regular font-weight-bold scroll" onclick="show_menu_mobile()">
-				<ul class="list-unstyled full-box">
-					<li>
-						<a href="index.php">Inicio</a>
-					</li>
-					<li>
-						<a href="Categorias.php">Menú</a>
-					</li>
-					<li>
-						<a href="registration.php">Regístrate</a>
-					</li>
-					<li>
-						<a href="signin.php">Login</a>
-					</li>
-				</ul>
-			</nav>
-			<a href="bag.php" class="header-button full-box text-center" title="Carrito">
-				<i class="fas fa-shopping-bag"></i>
-				<span class="badge bg-primary rounded-pill bag-count">2</span>
-			</a>
-
-			<div class="header-button full-box text-center" id="userMenu" data-mdb-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false" title="Nombre de usuario">
-				<i class="fas fa-user-circle"></i>
-			</div>
-			<div class="dropdown-menu div-bordered popup-login" aria-labelledby="userMenu">
-				<p class="text-center" style="padding-top: 10px;">
-					<i class="fas fa-user-circle fa-3x"></i><br>
-					<small>Nombre de usuario</small>
-				</p>
-				<a class="dropdown-item" href="javascript:void(0);">
-					<i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard
-				</a>
-				<a class="dropdown-item" href="javascript:void(0);">
-					<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar sesión
-				</a>
-			</div>
-
-			<a href="javascript:void(0);" class="header-button full-box text-center d-lg-none" title="Menú"
-				onclick="show_menu_mobile()">
-				<i class="fas fa-bars"></i>
-			</a>
-		</div>
-	</header>
-
 
 	<!-- Content -->
 	<div class="container container-web-page">
@@ -279,11 +240,13 @@
 	</footer>
 
 
+	<!--! footer o pie de pagina -->
+    <?PHP include_once 'footer.php' ?>
+    <!-- General scripts -->
+    <script src="./js/main.js"></script>
 	<!-- MDBootstrap V5 -->
 	<script src="./js/mdb.min.js"></script>
 
-	<!-- General scripts -->
-	<script src="./js/main.js"></script>
 
 	<script src="jquery/jquery-3.3.1.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>

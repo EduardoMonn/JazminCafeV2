@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+session_start();
+if (isset($_SESSION['s_correo'])) {
+    require_once 'cabeceraInicio.php';
+} else {
+    require_once 'cabecera.php';
+}
+?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JazCafe</title>
 
+    <!-- Normalize V8.0.1 -->
+    <link rel="stylesheet" href="./css/normalize.css">
+
+    <!-- MDBootstrap V5 -->
+    <link rel="stylesheet" href="./css/mdb.min.css">
+
+    <!-- Font Awesome V5.15.1 -->
+    <link rel="stylesheet" href="./css/all.css">
+
+    <!-- Sweet Alert V10.13.0 -->
+    <script src="./js/sweetalert2.js"></script>
+
+    <!-- General Styles -->
+    <link rel="stylesheet" href="./css/style.css">
     <!--+ eslitos css -->
     <!-- barra  -->
-    <link rel="stylesheet" href="css/estiloBarra.css">
+    <!-- <link rel="stylesheet" href="css/estiloBarra.css"> -->
     <!-- footer -->
     <link rel="stylesheet" href="css/estiloFooter.css">
-    <!-- nosotros -->
-    <link rel="stylesheet" href="css/estiloNoso.css">
+    <!-- slider -->
+    <link rel="stylesheet" href="css/estiloSlider.css">
+    <!-- productos -->
+    <link rel="stylesheet" href="css/estiloProductos.css">
 
     <!--+ kid para los iconos de la web  -->
     <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="body">
-
-    <!--! encabesado  -->
-    <header>
-        <div class="logo_B">
-            <a href="index.php"><img src="assets/img/JazminCafe.png" alt=""></a>
-        </div>
-        <nav>
-            <ul class="nav_list">
-                <li class="list_link"><a href="Categorias.php">Categorias</a></li>
-                <li class="list_link"><a href="nosotros.php">Nosotros</a></li>
-            </ul>
-        </nav>
-        <li class="btn"><a href="signin.php"><i class="fa-solid fa-user-check"></i> Iniciar sesion</a></li>
-    </header>
 
     <div class="content">
         <section class="box">
@@ -51,24 +61,11 @@
             </ul> -->
         </section>
     </div>
-
-    <footer>
-        <img src="assets/img/incono.png" alt="" class="logo_F">
-        <div class="social-incons-container">
-            <a href="" class="social-incon"></a>
-            <a href="" class="social-incon"></a>
-            <a href="" class="social-incon"></a>
-            <a href="" class="social-incon"></a>
-        </div>
-        <ul class="footer-menu-container">
-            <li class="menu-item">Legal</li>
-            <li class="menu-item">Privacy</li>
-            <li class="menu-item">Cookies</li>
-        </ul>
-        <span class="copyrigth">&copy;2022, Equipo 4. Todos los derechos reservados.</span>
-    </footer>
-
-
+    <!--! footer o pie de pagina -->
+    <?PHP include_once 'footer.php' ?>
+    <script src="./js/mdb.min.js"></script>
+    <!-- General scripts -->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

@@ -69,14 +69,14 @@ include "FuncionUsuario.php";
                         $tipoArchivo = $_FILES['foto']['type'];
                         $nombreArchivo = $_FILES['foto']['name'];
                         $tamanoArchivo = $_FILES['foto']['size'];
-                        $imagenSubida = fopen($_FILES['foto']['tmp_name'],'r');
-                        $binariosImagen = fread($imagenSubida,$tamanoArchivo);
+                        $imagenSubida = fopen($_FILES['foto']['tmp_name'], 'r');
+                        $binariosImagen = fread($imagenSubida, $tamanoArchivo);
                         include_once '../PHP/conexionPerfil.php';
                         $con = mysqli_connect("localhost", "root", "", "JazminCafeDB");
-                        $binariosImagen=mysqli_escape_string($con,$binariosImagen);
-                        $query = ("UPDATE Usuarios SET nombreimg='".$nombreArchivo."', img='".$binariosImagen."', tipoimg='".$tipoArchivo."' WHERE IdUsuario = '" . $_SESSION['s_IdUsuario'] . "'");
-                        
-                        $res = mysqli_query($con,$query);
+                        $binariosImagen = mysqli_escape_string($con, $binariosImagen);
+                        $query = ("UPDATE Usuarios SET nombreimg='" . $nombreArchivo . "', img='" . $binariosImagen . "', tipoimg='" . $tipoArchivo . "' WHERE IdUsuario = '" . $_SESSION['s_IdUsuario'] . "'");
+
+                        $res = mysqli_query($con, $query);
                         if ($res) {
                             echo '<script>
                                                 swal("Excelente!", "Se ha actualizado tu foto de perfil", "success")
@@ -84,8 +84,7 @@ include "FuncionUsuario.php";
                                                     window.location.href = "EditarPerfil.php";
                                                 });
                                             </script>';
-                        }
-                        else{
+                        } else {
                             echo '<script>
                                         swal("Advertencia!", "Tu perfil no se ha actualizado", "warning")
                                         .then((value) => {
@@ -105,28 +104,28 @@ include "FuncionUsuario.php";
                 $res = mysqli_query($con, $query);
                 while ($row = mysqli_fetch_array($res)) {
                 ?>
-                
-                
-                <form method="post" enctype="multipart/form-data">
-                <div class="text-center">
-                    <img src="data:image/<?php echo $row['tipoimg'] ?>;base64,<?php echo base64_encode($row['img']) ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%;">
-                    <h6>sube una foto diferente...</h6>
-                    <input type="file" class="text-center center-block file-upload" name="foto">
-                    <br>
-                    <hr>
-                    
-                <button class="btn btn-lg btn-success" name="guardarFoto" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Guardar foto</button>
-                </div>
-                </form>
-                
-                </hr><br>
+
+
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="text-center">
+                            <img src="data:image/<?php echo $row['tipoimg'] ?>;base64,<?php echo base64_encode($row['img']) ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%;">
+                            <h6>sube una foto diferente...</h6>
+                            <input type="file" class="text-center center-block file-upload" name="foto">
+                            <br>
+                            <hr>
+
+                            <button class="btn btn-lg btn-success" name="guardarFoto" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Guardar foto</button>
+                        </div>
+                    </form>
+
+                    </hr><br>
                 <?php
-                }?>
+                } ?>
             </div>
             <!--/col-3-->
             <div class="col-sm-9">
                 <ul class="nav nav-tabs" style="padding-left: 40px;">
-                    <li class="active"><a data-toggle="tab" href="#home" >Perfil</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Perfil</a></li>
                     <li><a data-toggle="tab" href="#messages">Cambio de contraseña</a></li>
                     <!-- <li><a data-toggle="tab" href="#settings">Menu 2</a></li> -->
                 </ul>
@@ -154,7 +153,7 @@ include "FuncionUsuario.php";
                                                     window.location.href = "EditarPerfil.php";
                                                 });
                                             </script>';
-                                }else{
+                                } else {
                                     echo '<script>
                                         swal("Advertencia!", "Tus datos no se han actualizado", "warning")
                                         .then((value) => {
@@ -165,9 +164,9 @@ include "FuncionUsuario.php";
                             }
                             ?>
                             <script>
-                                function mayus(e){
-                                e.value = e.value.toUpperCase();
-                            }
+                                function mayus(e) {
+                                    e.value = e.value.toUpperCase();
+                                }
                             </script>
                             <div class="form-group">
 

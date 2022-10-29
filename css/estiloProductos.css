@@ -67,7 +67,7 @@
 .detail-description {
     padding: 5px;
     text-align: center;
-    font-size: 14px;
+    font-size: 30px;
     color: #999;
     width: calc(100% - 10px);
 }
@@ -81,7 +81,7 @@
 }
 
 .detail-price span {
-    font-size: 15px;
+    font-size: 18px;
 }
 
 /*+ categorias  */

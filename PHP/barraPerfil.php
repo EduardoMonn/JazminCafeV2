@@ -38,7 +38,7 @@
 			<div class="header-button full-box text-center" id="userMenu" data-mdb-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false" title="Nombre de usuario">
 				<i class="fas fa-user-circle"></i>
-				<!-- <img src="data:image/<?php echo $row['tipoimg'] ?>;base64,<?php echo base64_encode($row['img']) ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%; max-width: 70%;"> -->
+				<!-- <img src="data:image/< ?php echo $row['tipoimg'] ?>;base64,< ?php echo base64_encode($row['img']) ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%; max-width: 70%;"> -->
 			</div>
 				<!-- < ? php
 				}

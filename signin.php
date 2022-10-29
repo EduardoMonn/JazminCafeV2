@@ -67,14 +67,11 @@
 					<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar sesión
 				</a>
 			</div>
-
 			<a href="javascript:void(0);" class="header-button full-box text-center d-lg-none" title="Menú" onclick="show_menu_mobile()">
 				<i class="fas fa-bars"></i>
 			</a>
 		</div>
 	</header>
-
-
 	<!-- comienza seccion de login -->
 	<section class="container-signin">
 		<div class="login-content div-bordered mb-4">
