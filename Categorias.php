@@ -1,10 +1,11 @@
 <?PHP
-include 'PHP/ConexionDB.php'
+include 'PHP/ConexionDB.php';
+include 'PHP/carrito.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
+// session_start();
 if (isset($_SESSION['s_correo'])) {
     require_once 'cabeceraInicio.php';
 } else {
@@ -46,6 +47,9 @@ if (isset($_SESSION['s_correo'])) {
 </head>
 
 <body>
+    <?php
+    // echo ($mensaje);
+    ?>
     <!--! categorias  -->
     <div class="select">
         <form action="">
@@ -82,7 +86,7 @@ if (isset($_SESSION['s_correo'])) {
             <!-- consultaremos que categoria se visualiza -->
             <?PHP
             // conexion a la base de datos
-            $con = mysqli_connect('localhost', 'root', '', 'jazmincafedb');
+            $con = mysqli_connect('localhost', 'root', '', 'JazminCafeDB');
             // return el metodo post pendejo get
             $valor = $_GET['valor'];
             // Consulta sql seleccionamos todo de la tabla "categorias"
@@ -98,7 +102,9 @@ if (isset($_SESSION['s_correo'])) {
                 <?PHP
                 // conexion a la base de datos a huevo ya me la aprendi
                 $con = mysqli_connect('localhost', 'root', '', 'jazmincafedb');
-
+                // Definimos constantes para encriptar los datos que se enviaran al carrito -->
+                // define("KEY", "Lapulga123");
+                // define("COD", "AES-128-ECB");
                 // Si todo funciona como creo esto guardara la posicion del selec para
                 //utilizarlo en la sentencia
                 $valor = $_GET['valor'];
@@ -117,10 +123,24 @@ if (isset($_SESSION['s_correo'])) {
                                 <div class="detail-description">Contenido: <?= $res['Contenido'] ?>gr</div>
                                 <div class="detail-price">Precio: $<?= $res['Precio'] ?><span>.00</span></div>
                                 <div class="text-center card-product-options" style="padding: 10px 0;">
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded text-success"><i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
-                                    &nbsp; &nbsp;
-                                    <a href="details.php" class="btn btn-link btn-sm btn-rounded"><i class="fas fa-box-open fa-fw"></i> &nbsp; Detalles</a>
-                                    &nbsp; &nbsp;
+                                    <!-- coemizno del form -->
+                                    <!-- agregamos productos al carrito -->
+                                    <form action="" method="post">
+                                        <!-- < ?php session_destroy() ?> -->
+                                    <button type="submit" class="btn btn-link btn-sm btn-rounded text-success" name="btnAccion" value="Agregar">
+                                            <i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
+                                        &nbsp; &nbsp;
+                                        <a href="details.php" class="btn btn-link btn-sm btn-rounded"><i class="fas fa-box-open fa-fw"></i> &nbsp; Detalles</a>
+                                        &nbsp; &nbsp;
+                                        <input type="hidden" name="CvProducto" id="CvProducto" value="<?php echo openssl_encrypt($res['CvProducto'], COD, KEY);  ?>">
+                                        <input type="hidden" name="DsProducto" id="DsProducto" value="<?php echo openssl_encrypt($res['DsProducto'], COD, KEY); ?>">
+                                        <input type="hidden" name="Precio" id="Precio" value="<?php echo openssl_encrypt($res['Precio'], COD, KEY); ?>">
+                                        <input type="hidden" name="Cantidad" id="Cantidad" value="<?php echo openssl_encrypt(1, COD, KEY); ?>">
+
+                                        
+                                    </form>
+                                    <!-- Cierre del form -->
+
                                 </div>
                             </div>
                         </a>

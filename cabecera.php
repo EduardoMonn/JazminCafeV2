@@ -35,7 +35,9 @@
 		</nav>
 		<a href="bag.php" class="header-button full-box text-center" title="Carrito">
 			<i class="fas fa-shopping-bag"></i>
-			<span class="badge bg-primary rounded-pill bag-count">2</span>
+			<span class="badge bg-primary rounded-pill bag-count"><?php 
+			echo (empty($_SESSION['CarritoCompras']))?0:count($_SESSION['CarritoCompras']);
+			?></span>
 		</a>
 
 		<!-- <div class="header-button full-box text-center" id="userMenu" data-mdb-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Nombre de usuario">
