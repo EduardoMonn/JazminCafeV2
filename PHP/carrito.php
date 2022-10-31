@@ -43,6 +43,11 @@ if (isset($_POST['btnAccion'])) {
                 // contar  el carrito de compras cuando agregamos mas productos
                 $_SESSION['CarritoCompras'][0]=$producto;
             }else{
+                $idProductos= array_column($_SESSION['CarritoCompras'],"ID");
+                // validamos que no se repita el mismo producto.
+                if (in_array($ID,$idProductos)) {
+                    echo '<script> alert("EL producto ya se encuentra en el carrito"); </script>';
+                }else{
                 $NumeroProductos=count($_SESSION['CarritoCompras']);
                 $producto = array(
                     'ID'=>$ID,
@@ -56,14 +61,15 @@ if (isset($_POST['btnAccion'])) {
                 // no funciona esta vaina ptm
                 // unset($producto[0],$producto[1],$producto[2],$producto[3],$producto[4],$producto[5],$producto[6],$producto[7],$producto[8],$producto[9]);
             }
+        }
             // imprime lo que contiene nuestro arreglo
-            echo print_r($_SESSION,true);
+            // echo print_r($_SESSION,true);
         break;
         case "Eliminar":
-            if (is_numeric(openssl_decrypt($_POST['id'], COD, KEY))) {
-                $ID=openssl_decrypt($_POST['id'], COD, KEY);
+            if (is_numeric(openssl_decrypt($_POST['ID'], COD, KEY))) {
+                $ID=openssl_decrypt($_POST['ID'], COD, KEY);
                 
-                foreach ($_SESSION['CarritoCompras'] as $indice => $producto) {
+                foreach ($_SESSION['CarritoCompras'] as $indice=>$producto) {
                     if ($producto['ID']==$ID) {
                         unset($_SESSION['CarritoCompras'][$indice]);
                         $_SESSION['CarritoCompras']=array_values($_SESSION["CarritoCompras"]); 
@@ -74,6 +80,7 @@ if (isset($_POST['btnAccion'])) {
                 $mensaje="Uppss Id incorrecto"."<br>";
             }
         break;
+        
     }
 }
 

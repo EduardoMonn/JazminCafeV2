@@ -87,7 +87,7 @@ include 'PHP/carrito.php';
 										<div class="col-12 col-lg-2 text-center text-lg-end mb-4">
 											<!-- formulario con metodo post para eliminar productos del carrito -->
 											<form action="" method="post">
-											<input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['ID'], COD, KEY);  ?>">
+											<input type="hidden" name="ID" id="ID" value="<?php echo openssl_encrypt($producto['ID'], COD, KEY);  ?>">
 												<button type="submit" class="btn btn-danger" data-mdb-toggle="tooltip" 
 												data-mdb-placement="bottom" title="Quitar del carrito"
 												name="btnAccion" value="Eliminar">
@@ -96,6 +96,7 @@ include 'PHP/carrito.php';
 											</form>
 											<!-- termina formulario con metodo post -->
 										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -121,10 +122,31 @@ include 'PHP/carrito.php';
 					</div>
 				</div>
 			</div>
-
-
+			<br>
+			<!-- comienza seccion de tabla -->
+		<!-- creamos el apartado para ingresar el correo y enviar los datos del producto -->
+		<tr>
+			<td>
+			<form action="pagar.php" method="post">
+				<div class="alert alert-success" role="alert">
+				<div class="form-group">
+					<label for="my-input">Correo de contacto</label>
+					<input id="email" class="form-control" type="email" name="email" placeholder="Escribe tu correo" required>
+				</div>
+				<small id="emailhelp" class="form-text text-muted">
+					la informacion se enviara a ese correo
+				</small>
+				</div>
+				<button class="btn btn-primary btn-lg btn-block" 
+				type="submit" 
+				name="btnAccion" 
+				value="proceder">Proceder pago >></button>
+				</form>
+			</td>
+		</tr>
+		<!-- terminas eccion de tabla -->
 		</div>
-
+		
 	</section>
 	<?php }else{ ?>
 		<br>
@@ -134,7 +156,7 @@ include 'PHP/carrito.php';
 		<h4 class="text-center poppins-regular font-weight-bold" >Carrito de compras vacío</h4>
 		</div>
 		<?php } ?>
-
+		
 	<!-- Footer -->
 	<footer class="footer">
 		<div class="container">

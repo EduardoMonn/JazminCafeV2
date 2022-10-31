@@ -136,11 +136,8 @@ if (isset($_SESSION['s_correo'])) {
                                         <input type="hidden" name="DsProducto" id="DsProducto" value="<?php echo openssl_encrypt($res['DsProducto'], COD, KEY); ?>">
                                         <input type="hidden" name="Precio" id="Precio" value="<?php echo openssl_encrypt($res['Precio'], COD, KEY); ?>">
                                         <input type="hidden" name="Cantidad" id="Cantidad" value="<?php echo openssl_encrypt(1, COD, KEY); ?>">
-
-                                        
                                     </form>
                                     <!-- Cierre del form -->
-
                                 </div>
                             </div>
                         </a>
@@ -150,8 +147,6 @@ if (isset($_SESSION['s_correo'])) {
             </div>
         </div>
     </div>
-
-
     <!--! footer o pie de pagina -->
     <?PHP include_once 'footer.php' ?>
     <script src="./js/mdb.min.js"></script>
