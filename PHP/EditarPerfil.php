@@ -20,18 +20,15 @@ include "FuncionUsuario.php";
 
     <!-- Normalize V8.0.1 -->
     <link rel="stylesheet" href="../css/normalize.css">
-
     <!-- MDBootstrap V5 -->
     <link rel="stylesheet" href="../css/mdb.min.css">
-
     <!-- Font Awesome V5.15.1 -->
     <link rel="stylesheet" href="../css/all.css">
-
     <!-- Sweet Alert V10.13.0 -->
     <!-- <script src="../js/sweetalert2.js"></script> -->
-
     <!-- General Styles -->
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>

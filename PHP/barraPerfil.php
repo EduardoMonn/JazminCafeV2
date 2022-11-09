@@ -1,64 +1,65 @@
+<!-- header -->
+<header class="p-3 mb-3 border-bottom" style="background: #980134;">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="../index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <img src="../assets/img/JazminCafe.png" alt="Bootstrap" width="100" height="60">
+            </a>
 
-<!-- Header -->
-<header class="header">
-		<div class="header-brand">
-			<a href="../index.php">
-				<img src="../assets/img/JazminCafe.png">
-			</a>
-		</div>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="../index.php" class="nav-link px-2 link-secondary">JazminCafe</a></li>
+                <li><a href="../menu.php?valor=0" class="nav-link px-2 link-dark">Menú</a></li>
+                <li><a href="../nosotros.php" class="nav-link px-2 link-dark">Acerca</a></li>
+            </ul>
 
-		<div class="header-options full-box">
-			<nav class="header-navbar full-box poppins-regular font-weight-bold scroll" onclick="show_menu_mobile()">
-				<ul class="list-unstyled full-box">
-					<li>
-						<a href="../index.php">Inicio</a>
-					</li>
-					<li>
-						<a href="../menu.php">Menú</a>
-					</li>
-					<!-- <li>
-						<a href="registration.php">Regístrate</a>
-					</li>
-					<li>
-						<a href="signin.php">Login</a>
-					</li> -->
-				</ul>
-			</nav>
-			<a href="../bag.php" class="header-button full-box text-center" title="Carrito">
-				<i class="fas fa-shopping-bag"></i>
-				<span class="badge bg-primary rounded-pill bag-count">2</span>
-			</a>
-			<!-- < ? php
-                include_once '../PHP/conexionPerfil.php';
-                $con = mysqli_connect("localhost", "root", "", "JazminCafeDB");
-                $query = ("SELECT nombreimg, img, tipoimg FROM Usuarios WHERE IdUsuario = '" . $_SESSION['s_IdUsuario'] . "' ");
-                $res = mysqli_query($con, $query);
-                while ($row = mysqli_fetch_array($res)) {
-                ?> -->
-			<div class="header-button full-box text-center" id="userMenu" data-mdb-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false" title="Nombre de usuario">
-				<i class="fas fa-user-circle"></i>
-				<!-- <img src="data:image/< ?php echo $row['tipoimg'] ?>;base64,< ?php echo base64_encode($row['img']) ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%; max-width: 70%;"> -->
-			</div>
-				<!-- < ? php
-				}
-				?> -->
-			<div class="dropdown-menu div-bordered popup-login" aria-labelledby="userMenu">
-				<p class="text-center" style="padding-top: 10px;">
-					<i class="fas fa-user-circle fa-3x"></i><br>
-					<small><?php echo $_SESSION["s_correo"]; ?></small>
-				</p>
-				<a class="dropdown-item" href="EditarPerfil.php">
-					<i class='fas fa-user-tie'></i> &nbsp;Editar Perfil
-				</a>
-				<a class="dropdown-item" href="../PHP/logout.php">
-					<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar sesión
-				</a>
-			</div>
+            <!-- carrito -->
+            <a href="../bag.php" class="header-button full-box text-center" title="Carrito">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="badge bg-primary rounded-pill bag-count">
+                    <?php 
+                    echo (empty($_SESSION['CarritoCompras']))?0:count($_SESSION['CarritoCompras']);
+                    ?>
+                </span>
+            </a>
 
-			<a href="javascript:void(0);" class="header-button full-box text-center d-lg-none" title="Menú"
-				onclick="show_menu_mobile()">
-				<i class="fas fa-bars"></i>
-			</a>
-		</div>
-	</header>
+            <!-- buscar -->
+            <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search">
+            </form> -->
+
+            <!-- consulta para la imagen -->
+            <?PHP
+            $id = $_SESSION['s_correo'];
+            // creamos la conexion a la base de datos
+            $con = mysqli_connect('localhost', 'root', '', 'jazmincafedb');
+            // creamos consulta sql
+            $consul = $con->query("SELECT * FROM usuarios WHERE correo LIKE '%$id%'");
+            // mostramos datos
+            while($mela = mysqli_fetch_assoc($consul)){
+            ?>
+            <!-- apartado de perfil lista desplegable -->
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="data:image/<?php echo $mela['tipoimg'] ?>;base64,<?php echo base64_encode($mela['img']) ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <?PHP
+                    }
+                    ?>
+                    <small><?php
+                    $sql= $con->query("SELECT * FROM Usuarios WHERE IdUsuario= '" . $_SESSION['s_IdUsuario'] . "' ");
+                    while($row = mysqli_fetch_assoc($sql)){
+                        echo $row['usuario'];
+                    }
+                    ?></small>
+                </a>
+                <ul class="dropdown-menu text-small">
+                    <li><a class="dropdown-item" href="EditarPerfil.php">Editar perfil</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Registrarte</a></li> -->
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="logout.php">Cerrar secion</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

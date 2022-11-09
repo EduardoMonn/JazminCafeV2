@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+if (isset($_SESSION['s_correo'])) {
+    require_once 'headerInicio.php';
+} else {
+    require_once 'header.php';
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -36,11 +44,6 @@
 </head>
 
 <body class="body">
-    <!-- header -->
-    <?PHP
-    include_once 'header.php';
-    ?>
-
     <div class="content">
         <section class="box">
             <img src="assets/img/jazminCafeLogo.jpeg" width="180" alt="" class="box-img">

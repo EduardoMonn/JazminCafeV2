@@ -27,12 +27,30 @@
                     <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search">
             </form> -->
 
+            <!-- consulta para la imagen -->
+            <?PHP
+            $id = $_SESSION['s_correo'];
+            // creamos la conexion a la base de datos
+            $con = mysqli_connect('localhost', 'root', '', 'jazmincafedb');
+            // creamos consulta sql
+            $consul = $con->query("SELECT * FROM Usuarios WHERE correo LIKE '%$id%'");
+            // mostramos datos
+            
+            while($mela = mysqli_fetch_assoc($consul)){
+            ?>
             <!-- apartado de perfil lista desplegable -->
             <div class="dropdown text-end">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="#" alt="mdo" width="32" height="32" class="rounded-circle">
-                    
-                    <small><?php echo $_SESSION["s_correo"]; ?></small>
+                    <img src="data:image/<?php echo $mela['tipoimg'] ?>;base64,<?php echo base64_encode($mela['img']) ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <?PHP
+                    }
+                    ?>
+                    <small><?php
+                    $sql= $con->query("SELECT * FROM Usuarios WHERE IdUsuario= '" . $_SESSION['s_IdUsuario'] . "' ");
+                    while($row = mysqli_fetch_assoc($sql)){
+                        echo $row['usuario'];
+                    }
+                    ?></small>
                 </a>
                 <ul class="dropdown-menu text-small">
                     <li><a class="dropdown-item" href="PHP/EditarPerfil.php">Editar perfil</a></li>
@@ -40,7 +58,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="PHP/logout.php">Cerrar secion</a></li>
+                    <li><a class="dropdown-item" href="PHP/logout.php">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>

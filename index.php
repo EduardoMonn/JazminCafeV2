@@ -80,7 +80,7 @@ if (isset($_SESSION['s_correo'])) {
     <!--! productos -->
     <div class="mai-content">
         <div class="content-page">
-            <div class="title-section">Productos</div>
+            <div class="title-section">Productos más vendidos!!</div>
             <div class="products-list">
 
                 <?PHP
@@ -101,12 +101,12 @@ if (isset($_SESSION['s_correo'])) {
                                 <div class="detail-description"><?= $res['Contenido'] ?> gr</div>
                                 <div class="detail-price">$ <?= $res['Precio'] ?><span>00</span></div>
 
-                                <div class="text-center card-product-options" style="padding: 10px 0;">
+                                <!-- <div class="text-center card-product-options" style="padding: 10px 0;">
                                     <button type="button" class="btn btn-link btn-sm btn-rounded text-success"><i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
                                     &nbsp; &nbsp;
                                     <a href="details.php" class="btn btn-link btn-sm btn-rounded"><i class="fas fa-box-open fa-fw"></i> &nbsp; Detalles</a>
                                     &nbsp; &nbsp;
-                                </div>
+                                </div> -->
 
                             </div>
 

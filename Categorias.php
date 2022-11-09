@@ -7,9 +7,9 @@ include 'PHP/carrito.php';
 <?php
 // session_start();
 if (isset($_SESSION['s_correo'])) {
-    require_once 'cabeceraInicio.php';
+    require_once 'headerInicio.php';
 } else {
-    require_once 'cabecera.php';
+    require_once 'header.php';
 }
 ?>
 

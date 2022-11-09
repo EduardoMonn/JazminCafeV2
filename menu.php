@@ -1,11 +1,22 @@
+<?PHP
+include 'PHP/ConexionDB.php';
+include 'PHP/carrito.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
+<?php
+if (isset($_SESSION['s_correo'])) {
+    require_once 'headerInicio.php';
+} else {
+    require_once 'header.php';
+}
+?>
 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Restaurant</title>
+	<title>ptm</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -35,14 +46,9 @@
 </head>
 
 <body>
-	<!-- header -->
-    <?PHP
-    include_once 'header.php';
-    ?>
-
 	<!-- Content -->
 	<div class="container container-web-page">
-		<h1 class="text-justify">Bienvenido al menú".</h1>
+		<h1 class="text-center">"Bienvenido al menú".</h1>
 		<div class="select">
 			<!-- combobox para mostrar las opciones -->
 			<form action="">
@@ -54,7 +60,7 @@
 					$con = mysqli_connect('localhost', 'root', '', 'jazmincafedb');
 					// return $mysqli;
 					// Consulta sql seleccionamos todo de la tabla "categorias"
-					$consulta_mysql = $con->query("SELECT * FROM categorias");
+					$consulta_mysql = $con->query("SELECT * FROM Categorias");
 					// Mostraremos los datos con el ciclo while por que asi lo aprendi
 					while ($cat = mysqli_fetch_assoc($consulta_mysql)) {
 					?>
@@ -80,7 +86,7 @@
         // return el metodo post pendejo get
         $v2 = $_GET['valor'];
         // Consulta sql seleccionamos todo de la tabla "categorias"
-        $consulta_mysql = $con->query("SELECT * FROM categorias WHERE CvCategoria LIKE '%$v2%'");
+        $consulta_mysql = $con->query("SELECT * FROM Categorias WHERE CvCategoria LIKE '%$v2%'");
         // Mostramos datos con el wile
         while ($cate = mysqli_fetch_assoc($consulta_mysql)) {
         ?>
@@ -112,23 +118,39 @@
 					while ($res = mysqli_fetch_assoc($consu)) {
 					?>
 						<div class="products-box">
-							<a href="details.php?clave=<?= $res['CvProducto'] ?>">
-								<div class="product">
-									<img src="assets/img/descarga.png" alt="">
-									<div class="detail-title"><?= $res['DsProducto'] ?></div>
-									<div class="detail-description"><?= $res['Contenido'] ?></div>
-									<div class="detail-price"><?= $res['Precio'] ?><span>00</span></div>
-
-									<div class="text-center card-product-options" style="padding: 10px 0;">
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded text-success"><i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
-                                    &nbsp; &nbsp;
-                                    <a href="details.php" class="btn btn-link btn-sm btn-rounded"><i class="fas fa-box-open fa-fw"></i> &nbsp; Detalles</a>
-                                    &nbsp; &nbsp;
+                        <a href="">
+                            <div class="product">
+                                <img src="assets/img/descarga.png" alt="">
+                                <div class="detail-title"><?= $res['DsProducto'] ?></div>
+                                <div class="detail-description">Contenido: <?= $res['Contenido'] ?>gr</div>
+                                <div class="detail-price">Precio: $<?= $res['Precio'] ?><span>.00</span></div>
+                                <div class="text-center card-product-options" style="padding: 10px 0;">
+                                    <!-- coemizno del form -->
+                                    <!-- agregamos productos al carrito -->
+                                    <form action="" method="post">
+                                        <!-- < ?php session_destroy() ?> -->
+                                    <button type="submit" class="btn btn-link btn-sm btn-rounded text-success" name="btnAccion" value="Agregar">
+                                            <i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
+                                        &nbsp; &nbsp;
+                                        <a></a> <div class="btn btn-link btn-sm btn-rounded">Cantidad: <input type="number" value="1" id="fecha" min="1" 
+                                        max="<?php echo $res['Stock'];?>" style="width: 40px;"></div>
+                                        &nbsp; &nbsp;
+                                        
+                                        <!-- <input type="number" name="" id="" value="" min="1" max="8"> -->
+                                        
+                                        
+                                        <input type="hidden" name="CvProducto" id="CvProducto" value="<?php echo openssl_encrypt($res['CvProducto'], COD, KEY);  ?>">
+                                        <input type="hidden" name="DsProducto" id="DsProducto" value="<?php echo openssl_encrypt($res['DsProducto'], COD, KEY); ?>">
+                                        <input type="hidden" name="Precio" id="Precio" value="<?php echo openssl_encrypt($res['Precio'], COD, KEY); ?>">
+                                        <input type="hidden" name="Cantidad" id="Cantidad" value="1">
+                                    </form>
+                                    
+                                    <!-- Cierre del form -->
+                                    
                                 </div>
-
-								</div>
-							</a>
-						</div>
+                            </div>
+                        </a>
+                    </div>
 					<?php } ?>
 
 				</div>
@@ -159,24 +181,40 @@
 					//se repetira la cantidad de productos
 					while ($res = mysqli_fetch_assoc($consu)) {
 					?>
-						<div class="products-box">
-							<a href="details.php?clave=<?= $res['CvProducto'] ?>">
-								<div class="product">
-									<img src="assets/img/descarga.png" alt="">
-									<div class="detail-title"><?= $res['DsProducto'] ?></div>
-									<div class="detail-description"><?= $res['Contenido'] ?></div>
-									<div class="detail-price"><?= $res['Precio'] ?><span>00</span></div>
-
-									<div class="text-center card-product-options" style="padding: 10px 0;">
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded text-success"><i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
-                                    &nbsp; &nbsp;
-                                    <a href="details.php" class="btn btn-link btn-sm btn-rounded"><i class="fas fa-box-open fa-fw"></i> &nbsp; Detalles</a>
-                                    &nbsp; &nbsp;
-								</div>
-
-								</div>
-							</a>
-						</div>
+					<div class="products-box">
+                        <a href="">
+                            <div class="product">
+                                <img src="assets/img/descarga.png" alt="">
+                                <div class="detail-title"><?= $res['DsProducto'] ?></div>
+                                <div class="detail-description">Contenido: <?= $res['Contenido'] ?>gr</div>
+                                <div class="detail-price">Precio: $<?= $res['Precio'] ?><span>.00</span></div>
+                                <div class="text-center card-product-options" style="padding: 10px 0;">
+                                    <!-- coemizno del form -->
+                                    <!-- agregamos productos al carrito -->
+                                    <form action="" method="post">
+                                        <!-- < ?php session_destroy() ?> -->
+                                    <button type="submit" class="btn btn-link btn-sm btn-rounded text-success" name="btnAccion" value="Agregar">
+                                            <i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
+                                        &nbsp; &nbsp;
+                                        <a></a> <div class="btn btn-link btn-sm btn-rounded">Cantidad: <input type="number" value="1" id="fecha" min="1" 
+                                        max="<?php echo $res['Stock'];?>" style="width: 40px;"></div>
+                                        &nbsp; &nbsp;
+                                        
+                                        <!-- <input type="number" name="" id="" value="" min="1" max="8"> -->
+                                        
+                                        
+                                        <input type="hidden" name="CvProducto" id="CvProducto" value="<?php echo openssl_encrypt($res['CvProducto'], COD, KEY);  ?>">
+                                        <input type="hidden" name="DsProducto" id="DsProducto" value="<?php echo openssl_encrypt($res['DsProducto'], COD, KEY); ?>">
+                                        <input type="hidden" name="Precio" id="Precio" value="<?php echo openssl_encrypt($res['Precio'], COD, KEY); ?>">
+                                        <input type="hidden" name="Cantidad" id="Cantidad" value="1">
+                                    </form>
+                                    
+                                    <!-- Cierre del form -->
+                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
 					<?php } ?>
 
 				</div>
@@ -189,6 +227,14 @@
     include_once 'footer.php';
     ?>
 
+<script>
+    var fecha= document.getElementById('fecha');
+    fecha.addEventListener('change', setText);
+    function setText() {
+        var texto = document.getElementById('Cantidad');
+        texto.value = fecha.value;
+	}
+</script>
 	<!-- MDBootstrap V5 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="./js/mdb.min.js"></script>
