@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['s_correo'])) {
+    require_once 'headerInicio.php';
+} else {
+    require_once 'header.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,75 +31,32 @@
 	<!-- General Styles -->
 	<link rel="stylesheet" href="./css/style.css">
 
+	<!--+ eslitos css -->
+    <!-- footer -->
+    <link rel="stylesheet" href="css/estiloFooter.css">
+    <!-- productos -->
+    <link rel="stylesheet" href="css/estiloProductos.css">
+    <!-- slider -->
+    <link rel="stylesheet" href="css/estiloSlider.css">
+    <!-- barra -->
+    <link rel="stylesheet" href="css/estiloBarra.css">
+
+    <!--+ kid para los iconos de la web  -->
+    <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body id="main-body">
-
-	<!-- Header -->
-	<header class="header full-box bg-white">
-		<div class="header-brand full-box">
-			<a href="index.php">
-				<img src="./assets/img/logo.png" alt="Designlopers" class="img-fluid">
-			</a>
-		</div>
-
-		<div class="header-options full-box">
-			<nav class="header-navbar full-box poppins-regular font-weight-bold scroll" onclick="show_menu_mobile()">
-				<ul class="list-unstyled full-box">
-					<li>
-						<a href="index.php">Inicio</a>
-					</li>
-					<li>
-						<a href="menu.php">Menú</a>
-					</li>
-					<li>
-						<a href="registration.php">Regístrate</a>
-					</li>
-					<li>
-						<a href="signin.php">Login</a>
-					</li>
-				</ul>
-			</nav>
-			<a href="bag.php" class="header-button full-box text-center" title="Carrito">
-				<i class="fas fa-shopping-bag"></i>
-				<span class="badge bg-primary rounded-pill bag-count">2</span>
-			</a>
-
-			<div class="header-button full-box text-center" id="userMenu" data-mdb-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false" title="Nombre de usuario">
-				<i class="fas fa-user-circle"></i>
-			</div>
-			<div class="dropdown-menu div-bordered popup-login" aria-labelledby="userMenu">
-				<p class="text-center" style="padding-top: 10px;">
-					<i class="fas fa-user-circle fa-3x"></i><br>
-					<small>Nombre de usuario</small>
-				</p>
-				<a class="dropdown-item" href="javascript:void(0);">
-					<i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard
-				</a>
-				<a class="dropdown-item" href="javascript:void(0);">
-					<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar sesión
-				</a>
-			</div>
-
-			<a href="javascript:void(0);" class="header-button full-box text-center d-lg-none" title="Menú"
-				onclick="show_menu_mobile()">
-				<i class="fas fa-bars"></i>
-			</a>
-		</div>
-	</header>
-
-
-	<!-- Content -->
+	<!-- Contenido -->
 	<div class="container container-web-page">
 		<h3 class="font-weight-bold poppins-regular text-uppercase">Detalles de platillo</h3>
 		<hr>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 col-lg-5">
-					<!--cover-->
+					<!--cover imagen principal-->
 					<figure class="full-box">
-						<img class="img-fluid" src="./assets/platillos/platillo.jpg" alt="platillo_">
+						<img class="img-fluid" src="assets/img/descarga.png" alt="platillo_">
 					</figure>
 
 					<!-- Galery -->
@@ -100,41 +66,55 @@
 
 						<!--cover-->
 						<figure class="full-box">
-							<a data-fslightbox="gallery" href="./assets/img/banner_3.jpg">
-								<img class="img-fluid" src="./assets/img/banner_3.jpg" alt="platillo_">
+							<a data-fslightbox="gallery" href="assets/img/descarga.png">
+								<img class="img-fluid" src="assets/img/descarga.png" alt="cafe">
 							</a>
 						</figure>
 
 						<!--otras-->
 						<figure class="full-box">
-							<a data-fslightbox="gallery" href="./assets/img/banner_1.jpg">
-								<img class="img-fluid" src="./assets/img/banner_1.jpg" alt="platillo_">
+							<a data-fslightbox="gallery" href="assets/img/descarga.png">
+								<img class="img-fluid" src="assets/img/descarga.png" alt="cafe">
 							</a>
 						</figure>
 
 						<figure class="full-box">
-							<a data-fslightbox="gallery" href="./assets/img/banner_2.jpg">
-								<img class="img-fluid" src="./assets/img/banner_2.jpg" alt="platillo_">
+							<a data-fslightbox="gallery" href="assets/img/descarga.png">
+								<img class="img-fluid" src="assets/img/descarga.png" alt="cafe">
 							</a>
 						</figure>
 
 					</div>
 				</div>
-				<div class="col-12 col-lg-7">
 
-					<h4 class="font-weight-bold poppins-regular tittle-details">Nombre del platillo o bebida</h4>
+				<!-- informacion del cafe XD (abia puesto platillo) -->
+				<div class="col-12 col-lg-7">
+					<?PHP
+					// resibimos la clave del producto
+					$clave = $_GET['clave'];
+					// creamos coneccion
+					$deta = mysqli_connect('localhost', 'root', '', 'jazmincafedb');
+					// creamos consulta
+					$consulta = $deta->query("SELECT * FROM Productos WHERE CvProducto = '$clave'");
+					// mostramos los datos de la consulta como lo aprendi
+					while ($row = mysqli_fetch_assoc($consulta)){
+					?>
+					<h4 class="font-weight-bold poppins-regular tittle-details"><?= $row['DsProducto'] ?></h4>
 
 					<p class="text-justify lead" style="padding: 40px 0;">
 						<span class="text-info lead font-weight-bold">Descripción:</span><br>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis obcaecati, corporis nam
-						ab officiis modi nesciunt iure repudiandae vel! Illum minus sapiente sunt quibusdam vero
-						voluptate sequi eaque consectetur perferendis!
+						Cafe de la mejor calidad.<br>
+						La bolsa contiene <?= $row['Contenido'] ?><span style="font-size: 16px;">g</span>.<br>
+						Se encuentran <?= $row['Stock'] ?> en existencia.<br>
 					</p>
 
-					<p class="lead font-weight-bold">Precio: $25.00 USD</p>
+					<p class="lead font-weight-bold">Precio: $<?= $row['Precio'] ?> MXN</p>
+					<?PHP
+					}
+					?>
 
 					<!-- Agregar al carrito -->
-					<form action="" style="padding-top: 70px;">
+					<!-- <form action="" style="padding-top: 70px;">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-12 col-md-6">
@@ -150,10 +130,10 @@
 								</div>
 							</div>
 						</div>
-					</form>
+					</form> -->
 
 					<!-- Actualizar el carrito -->
-					<form action="" style="padding-top: 70px;">
+					<!-- <form action="" style="padding-top: 70px;">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-12 col-md-6">
@@ -169,7 +149,7 @@
 								</div>
 							</div>
 						</div>
-					</form>
+					</form> -->
 				</div>
 			</div>
 		</div>
@@ -177,56 +157,15 @@
 
 
 	<!-- Footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-4">
-					<ul class="list-unstyled">
-						<li>
-							<h5 class="font-weight-bold"><i class="far fa-copyright"></i> Carlos Alfaro 2021</h5>
-						</li>
-						<li> Todos los derechos reservados </li>
-					</ul>
-				</div>
-				<div class="col-12 col-md-4">
-					<ul class="list-unstyled">
-						<li>
-							<h5 class="font-weight-bold">El Salvador</h5>
-						</li>
-						<li><i class="fas fa-map-marker-alt fa-fw"></i> San Salvador, El Salvador, Centro América</li>
-					</ul>
-				</div>
-				<div class="col-12 col-md-4">
-					<ul class="list-unstyled">
-						<li>
-							<h5 class="font-weight-bold">Siguenos en:</h5>
-						</li>
-						<li>
-							<a href="https://es-la.facebook.com/CarlosAlfaroES/" class="footer-link" target="_blank">
-								<i class="fab fa-facebook fa-fw"></i> Facebook
-							</a>
-						</li>
-
-						<li>
-							<a href="https://www.youtube.com/c/CarlosAlfaro007" class="footer-link" target="_blank">
-								<i class="fab fa-instagram fa-fw"></i> Instagram
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-
+	<?PHP
+    include_once 'footer.php';
+    ?>
 
 	<!-- MDBootstrap V5 -->
-	<script src="./js/mdb.min.js"></script>
-
-	<!-- fslightbox -->
-	<script src="./js/fslightbox.js"></script>
-
-	<!-- General scripts -->
-	<script src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/mdb.min.js"></script>
+    <!-- General scripts -->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

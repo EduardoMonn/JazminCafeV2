@@ -2,10 +2,10 @@
 
 session_start();
 unset($_SESSION["s_correo"]);
-unset($_SESSION["s_usuario"]);
 unset($_SESSION ["s_Rol_Id"]);
 unset($_SESSION ["s_rol"]);
-session_destroy();
+unset($_SESSION ["s_usuario"]);
+unset($_SESSION ["s_IdUsuario"]);
 header("Location:../index.php")
 
 ?>

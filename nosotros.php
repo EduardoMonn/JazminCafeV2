@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-session_start();
-if (isset($_SESSION['s_correo'])) {
-    require_once 'cabeceraInicio.php';
-} else {
-    require_once 'cabecera.php';
-}
-?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,35 +8,38 @@ if (isset($_SESSION['s_correo'])) {
     <title>JazCafe</title>
 
     <!-- Normalize V8.0.1 -->
-    <link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/normalize.css">
 
-    <!-- MDBootstrap V5 -->
-    <link rel="stylesheet" href="./css/mdb.min.css">
+<!-- MDBootstrap V5 -->
+<link rel="stylesheet" href="./css/mdb.min.css">
 
-    <!-- Font Awesome V5.15.1 -->
-    <link rel="stylesheet" href="./css/all.css">
+<!-- Font Awesome V5.15.1 -->
+<link rel="stylesheet" href="./css/all.css">
 
-    <!-- Sweet Alert V10.13.0 -->
-    <script src="./js/sweetalert2.js"></script>
+<!-- Sweet Alert V10.13.0 -->
+<script src="./js/sweetalert2.js"></script>
 
-    <!-- General Styles -->
-    <link rel="stylesheet" href="./css/style.css">
-    <!--+ eslitos css -->
-    <!-- barra  -->
-    <!-- <link rel="stylesheet" href="css/estiloBarra.css"> -->
-    <!-- footer -->
-    <link rel="stylesheet" href="css/estiloFooter.css">
-    <!-- slider -->
-    <link rel="stylesheet" href="css/estiloSlider.css">
-    <!-- productos -->
-    <link rel="stylesheet" href="css/estiloProductos.css">
+<!-- General Styles -->
+<link rel="stylesheet" href="./css/style.css">
 
-    <!--+ kid para los iconos de la web  -->
-    <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
+<!--+ eslitos css -->
+<!-- footer -->
+<link rel="stylesheet" href="css/estiloFooter.css">
+<!-- nosotros -->
+<link rel="stylesheet" href="css/estiloNoso.css">
+<!-- barra -->
+<link rel="stylesheet" href="css/estiloBarra.css">
+
+<!--+ kid para los iconos de la web  -->
+<script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body class="body">
+    <!-- header -->
+    <?PHP
+    include_once 'header.php';
+    ?>
 
     <div class="content">
         <section class="box">
@@ -61,8 +57,15 @@ if (isset($_SESSION['s_correo'])) {
             </ul> -->
         </section>
     </div>
-    <!--! footer o pie de pagina -->
-    <?PHP include_once 'footer.php' ?>
+
+
+    <!-- footer -->
+    <?PHP
+    include_once 'footer.php';
+    ?>
+
+    <!-- MDBootstrap V5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/mdb.min.js"></script>
     <!-- General scripts -->
     <script src="./js/main.js"></script>

@@ -42,8 +42,8 @@ $(document).ready(function () {
         CvProducto = parseInt(fila.find('td:eq(0)').text());
         DsProducto = fila.find('td:eq(1)').text();
         Contenido = fila.find('td:eq(2)').text();
-        CvProveedor = fila.find('td:eq(3)').text();
-        CvCategoria = fila.find('td:eq(4)').text();
+        CvProveedor = parseInt(fila.find('td:eq(3)').text());
+        CvCategoria = parseInt(fila.find('td:eq(4)').text());
         Precio = fila.find('td:eq(5)').text();
         Stock = fila.find('td:eq(6)').text();
 

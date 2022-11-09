@@ -93,6 +93,11 @@ include 'PHP/carrito.php';
 												name="btnAccion" value="Eliminar">
 												<span aria-hidden="true"><i class="far fa-trash-alt"></i></span>
 												</button>
+<!-- 												
+												<button type="submit" class="btn btn-success" data-mdb-toggle="tooltip" 
+												data-mdb-placement="bottom" title="Actualizar cantidad"
+												name="btnAccion" value="Modificar">
+												<i class="fas fa-sync-alt fa-fw"></i></button> -->
 											</form>
 											<!-- termina formulario con metodo post -->
 										</div>
@@ -106,6 +111,15 @@ include 'PHP/carrito.php';
 				</div>
 				<?php $total=$total+($producto['PRECIO']*$producto['CANTIDAD']); ?>
 				<?php }?>
+				<?php
+			function llamar(){
+				if (isset($_SESSION['s_correo'])) {
+					echo '<script>window.location.href("pagar.php"); </script>';
+				} else {
+					echo '<script>alert("Debes iniciar sesion para realizar tu compra"); </script>';
+				}
+			}
+			?>
 				<div class="col-12 col-md-5 col-lg-4">
 					<div class="full-box div-bordered">
 						<h5 class="text-center text-uppercase bg-success" style="color: #FFF; padding: 10px 0;">Resumen del pedido</h5>
@@ -117,15 +131,21 @@ include 'PHP/carrito.php';
 							</a>
 						</ul>
 						<p class="text-center">
-							<button type="button" class="btn btn-primary">Confirmar pedido</button>
+							<form action="pagar.php" method="post" class="text-center">
+							<button type="submit"
+							name="btnAccion"
+							class="btn btn-primary">Confirmar pedido
+							</button>
+							</form>
 						</p>
 					</div>
 				</div>
 			</div>
 			<br>
+			
 			<!-- comienza seccion de tabla -->
 		<!-- creamos el apartado para ingresar el correo y enviar los datos del producto -->
-		<tr>
+		<!-- <tr>
 			<td>
 			<form action="pagar.php" method="post">
 				<div class="alert alert-success" role="alert">
@@ -143,7 +163,7 @@ include 'PHP/carrito.php';
 				value="proceder">Proceder pago >></button>
 				</form>
 			</td>
-		</tr>
+		</tr> -->
 		<!-- terminas eccion de tabla -->
 		</div>
 		

@@ -10,6 +10,8 @@ if (isset($_SESSION['s_correo'])) {
     require_once 'cabecera.php';
 }
 ?>
+
+
 <link rel="stylesheet" href="./css/normalize.css">
 
 <!-- MDBootstrap V5 -->
@@ -33,16 +35,16 @@ if (isset($_SESSION['s_correo'])) {
 
 <!--+ kid para los iconos de la web  -->
 <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <?php
-$objeto = new Conexion();
+if (isset($_SESSION['s_correo'])) {
+    $objeto = new Conexion();
 $conexion = $objeto->Conectar(); 
 if ($_POST) {
-
     $total=0;
     // obtener la sesion de ID
     $SID=session_id();
-    $Correo=$_POST['email'];
     foreach ($_SESSION['CarritoCompras'] as $indice=>$producto) {
         $total=$total+($producto['PRECIO']*$producto['CANTIDAD']);
     }
@@ -51,7 +53,7 @@ if ($_POST) {
     $sentencia = $conexion -> prepare($consulta);
 
     $sentencia->bindParam(":ClaveTransaccion",$SID);
-    $sentencia->bindParam(":Correo",$Correo);
+    $sentencia->bindParam(":Correo",$_SESSION['s_correo']);
     $sentencia->bindParam(":Total",$total);
     $sentencia->execute();
     $idVenta=$conexion->lastInsertId();
@@ -67,10 +69,11 @@ if ($_POST) {
         $sentencia->bindParam(":Cantidad",$producto['CANTIDAD']);
         $sentencia->execute();
     }
+
+    
     // echo "<h3>".$total."</h3>";
 }
 ?>
-
 <div class="jumbotron text-center">
     <h1 class="display-4">¡Paso final!</h1>
     <hr class="my-4">
@@ -81,6 +84,17 @@ if ($_POST) {
         <strong>Para mas aclaraciones marca al 963-195-7933</strong>
     </p>
 </div>
+<?php
+}else{
+    echo 
+    '<script>
+    swal("Cuidado!", "Necesitas iniciar sesion para continuar con tu comnpra", "warning")
+    .then((value) => {
+        window.location.href = "signin.php";
+    });
+    </script>';
+}
+?>
 
 <?PHP include_once 'footer.php' ?>
 <script src="./js/mdb.min.js"></script>

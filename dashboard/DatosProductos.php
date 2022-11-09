@@ -87,11 +87,27 @@
                         </div>
                         <div class="form-group">
                             <label for="CvProveedor" class="col-form-label">Proveedor:</label>
-                            <input type="text" class="form-control" id="CvProveedor">
+                            <select name="CvProveedor" class="form-control" id="CvProveedor">
+                                <?php 
+                                include ("bd/conec.php");
+                                $query = $mysqli -> query ("SELECT * FROM Proveedores;");
+                                while ($valor = mysqli_fetch_array($query)) {
+                                    echo '<option value="'.$valor["CvProveedor"].'">'.$valor["Nombre"].'</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="CvCategoria" class="col-form-label">Categoria:</label>
-                            <input type="text" class="form-control" id="CvCategoria">
+                            <select name="CvCategoria" class="form-control" id="CvCategoria">
+                                <?php 
+                                include ("bd/conec.php");
+                                $query = $mysqli -> query ("SELECT * FROM Categorias;");
+                                while ($valor = mysqli_fetch_array($query)) {
+                                    echo '<option value="'.$valor["CvCategoria"].'">'.$valor["DsCategoria"].'</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="Precio" class="col-form-label">Precio:</label>

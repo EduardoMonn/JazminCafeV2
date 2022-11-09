@@ -10,9 +10,9 @@ $conexion = $objeto->Conectar();
 $correo = (isset($_POST['correo'])) ? $_POST['correo'] :'';
 $password = (isset($_POST['password'])) ? $_POST['password'] :'';
 
-$pass = md5($password); //*encriptacion de la clave enviada por el usuario para compararla con la clave en la DB
+// $pass = md5($password); encriptacion de la clave enviada por el usuario para compararla con la clave en la DB
 
-$consulta = "SELECT usuarios.IdUsuario, usuarios.Rol_Id, Roles.rol, usuarios.usuario AS rol FROM usuarios JOIN Roles ON Roles.Id=Usuarios.Rol_Id WHERE correo = '$correo' AND password='$pass'";
+$consulta = "SELECT usuarios.IdUsuario, usuarios.Rol_Id, Roles.rol, usuarios.usuario AS rol FROM usuarios JOIN Roles ON Roles.Id=Usuarios.Rol_Id WHERE correo = '$correo' AND password='$password'";
 
     try{
         $resultado = $conexion -> prepare($consulta);
@@ -25,7 +25,7 @@ $consulta = "SELECT usuarios.IdUsuario, usuarios.Rol_Id, Roles.rol, usuarios.usu
             if ($resultado->rowCount() >= 1) {
                 $data = $resultado -> fetchAll(PDO::FETCH_ASSOC);
                 $_SESSION ["s_correo"] = $correo;
-                $_SESSION ["s_usuario"] = $data[0]["usuario"];
+                // $_SESSION ["s_usuario"] = $data[0]["usuario"];
                 $_SESSION ["s_Rol_Id"] = $data[0]["Rol_Id"];
                 $_SESSION ["s_rol"] = $data[0]["rol"];
                 $_SESSION ["s_IdUsuario"] = $data[0]["IdUsuario"];

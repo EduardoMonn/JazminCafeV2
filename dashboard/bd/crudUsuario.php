@@ -13,10 +13,10 @@ $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $IdUsuario = (isset($_POST['IdUsuario'])) ? $_POST['IdUsuario'] : '';
 
-$pass= md5($password);
+// $pass= md5($password);
 switch($opcion){
     case 1: //alta
-        $consulta = "INSERT INTO Usuarios (nombre, apellido, telefono, correo, usuario, password,Rol_Id) VALUES('$nombre', '$apellido', '$telefono', '$correo', '$usuario','$pass','2') ";			
+        $consulta = "INSERT INTO Usuarios (nombre, apellido, telefono, correo, usuario, password,Rol_Id) VALUES('$nombre', '$apellido', '$telefono', '$correo', '$usuario','$password','2') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
 
@@ -26,7 +26,7 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2: //modificación
-        $consulta = "UPDATE Usuarios SET nombre='$nombre', apellido='$apellido', telefono='$telefono', correo='$correo', usuario='$usuario', password='$pass' WHERE IdUsuario='$IdUsuario' ";		
+        $consulta = "UPDATE Usuarios SET nombre='$nombre', apellido='$apellido', telefono='$telefono', correo='$correo', usuario='$usuario', password='$password' WHERE IdUsuario='$IdUsuario' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         

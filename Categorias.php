@@ -130,14 +130,21 @@ if (isset($_SESSION['s_correo'])) {
                                     <button type="submit" class="btn btn-link btn-sm btn-rounded text-success" name="btnAccion" value="Agregar">
                                             <i class="fas fa-shopping-bag fa-fw"></i> &nbsp; Agregar</button>
                                         &nbsp; &nbsp;
-                                        <a href="details.php" class="btn btn-link btn-sm btn-rounded"><i class="fas fa-box-open fa-fw"></i> &nbsp; Detalles</a>
+                                        <a></a> <div class="btn btn-link btn-sm btn-rounded">Cantidad: <input type="number" value="1" id="fecha" min="1" 
+                                        max="<?php echo $res['Stock'];?>" style="width: 40px;"></div>
                                         &nbsp; &nbsp;
+                                        
+                                        <!-- <input type="number" name="" id="" value="" min="1" max="8"> -->
+                                        
+                                        
                                         <input type="hidden" name="CvProducto" id="CvProducto" value="<?php echo openssl_encrypt($res['CvProducto'], COD, KEY);  ?>">
                                         <input type="hidden" name="DsProducto" id="DsProducto" value="<?php echo openssl_encrypt($res['DsProducto'], COD, KEY); ?>">
                                         <input type="hidden" name="Precio" id="Precio" value="<?php echo openssl_encrypt($res['Precio'], COD, KEY); ?>">
-                                        <input type="hidden" name="Cantidad" id="Cantidad" value="<?php echo openssl_encrypt(1, COD, KEY); ?>">
+                                        <input type="hidden" name="Cantidad" id="Cantidad" value="1">
                                     </form>
+                                    
                                     <!-- Cierre del form -->
+                                    
                                 </div>
                             </div>
                         </a>
@@ -147,6 +154,14 @@ if (isset($_SESSION['s_correo'])) {
             </div>
         </div>
     </div>
+    <script>
+    var fecha= document.getElementById('fecha');
+    fecha.addEventListener('change', setText);
+    function setText() {
+        var texto = document.getElementById('Cantidad');
+        texto.value = fecha.value;
+}
+    </script>
     <!--! footer o pie de pagina -->
     <?PHP include_once 'footer.php' ?>
     <script src="./js/mdb.min.js"></script>

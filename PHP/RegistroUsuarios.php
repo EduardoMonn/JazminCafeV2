@@ -14,14 +14,14 @@ $correo = (isset($_POST['correo'])) ? $_POST['correo'] :'';
 $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] :'';
 $password = (isset($_POST['password'])) ? $_POST['password'] :'';
 
-$pass = md5($password); //*encriptacion de la clave enviada por el usuario para compararla con la clave en la DB
+// $pass = md5($password); encriptacion de la clave enviada por el usuario para compararla con la clave en la DB
 
 $verificar = "SELECT * FROM usuarios WHERE correo = '$correo'";
 $resul = $conexion->prepare($verificar);
 $resul->execute();
 
 if ($resul->rowCount()==0) {
-    $consulta = "INSERT INTO usuarios(nombre,apellido,telefono,correo,usuario,password,token,Rol_Id) VALUES ('$nombre','$apellido','$telefono','$correo','$usuario','$pass','','2')";
+    $consulta = "INSERT INTO usuarios(nombre,apellido,telefono,correo,usuario,password,token,Rol_Id) VALUES ('$nombre','$apellido','$telefono','$correo','$usuario','$password','','2')";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     echo 1;

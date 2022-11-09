@@ -18,15 +18,29 @@
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
 
+	<!--+ eslitos css -->
+    <!-- footer -->
+    <link rel="stylesheet" href="css/estiloFooter.css">
+    <!-- productos -->
+    <link rel="stylesheet" href="css/estiloProductos.css">
+    <!-- slider -->
+    <link rel="stylesheet" href="css/estiloSlider.css">
+    <!-- barra -->
+    <link rel="stylesheet" href="css/estiloBarra.css">
+
+    <!--+ kid para los iconos de la web  -->
+    <script src="https://kit.fontawesome.com/0b2cf726a6.js" crossorigin="anonymous"></script>
+
+
 </head>
 
 <body id="main-body">
 <?php
 session_start();
 if (isset($_SESSION['s_correo'])) {
-    require_once 'cabeceraInicio.php';
+    require_once 'headerInicio.php';
 } else {
-    require_once 'cabecera.php';
+    require_once 'header.php';
 }
 ?>
 	<!-- comienza seccion de login -->
@@ -51,49 +65,14 @@ if (isset($_SESSION['s_correo'])) {
 	</section>
 
 	<!-- Footer o pie de pagina -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-4">
-					<ul class="list-unstyled">
-						<li>
-							<h5 class="font-weight-bold"><i class="far fa-copyright"></i>&copy;2022, Equipo 4</h5>
-						</li>
-						<li> Todos los derechos reservados </li>
-					</ul>
-				</div>
-				<div class="col-12 col-md-4">
-					<ul class="list-unstyled">
-						<li>
-							<h5 class="font-weight-bold">Jazmín Café</h5>
-						</li>
-						<li><i class="fas fa-map-marker-alt fa-fw"></i> la pila, las margaritas, Comitán</li>
-					</ul>
-				</div>
-				<div class="col-12 col-md-4">
-					<ul class="list-unstyled">
-						<li>
-							<h5 class="font-weight-bold">Siguenos en:</h5>
-						</li>
-						<li>
-							<a href="https://es-la.facebook.com/CarlosAlfaroES/" class="footer-link" target="_blank">
-								<i class="fab fa-facebook fa-fw"></i> Facebook
-							</a>
-						</li>
-
-						<li>
-							<a href="https://www.youtube.com/c/CarlosAlfaro007" class="footer-link" target="_blank">
-								<i class="fab fa-instagram fa-fw"></i> Instagram
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<?PHP
+    include_once 'footer.php';
+    ?>
 
 
 	<!-- MDBootstrap V5 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+	<!--  -->
 	<script src="./js/mdb.min.js"></script>
 	<!-- General scripts -->
 	<script src="./js/main.js"></script>

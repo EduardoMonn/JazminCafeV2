@@ -27,8 +27,8 @@ if (isset($_POST['btnAccion'])) {
             }else{
                 $mensaje.="Uppss Precio incorrecta"."<br>"; break;
             }
-            if (is_numeric(openssl_decrypt($_POST['Cantidad'], COD, KEY))) {
-                $CANTIDAD=openssl_decrypt($_POST['Cantidad'], COD, KEY);
+            if ($_POST['Cantidad']) {
+                $CANTIDAD=$_POST['Cantidad'];
                 $mensaje.="Cantidad correcto "."<br>";
             }else{
                 $mensaje.="Uppss Cantidad incorrecta"."<br>"; break;
@@ -47,6 +47,7 @@ if (isset($_POST['btnAccion'])) {
                 // validamos que no se repita el mismo producto.
                 if (in_array($ID,$idProductos)) {
                     echo '<script> alert("EL producto ya se encuentra en el carrito"); </script>';
+                
                 }else{
                 $NumeroProductos=count($_SESSION['CarritoCompras']);
                 $producto = array(
@@ -80,7 +81,6 @@ if (isset($_POST['btnAccion'])) {
                 $mensaje="Uppss Id incorrecto"."<br>";
             }
         break;
-        
     }
 }
 
